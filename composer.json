@@ -1,0 +1,19 @@
+{
+  "name": "edausgre/328/Candyland",
+  "authors": [
+    {
+      "name": "Ean Daus",
+      "email": "eandaus123@gmail.com"
+    },
+    {
+      "name": "Amanda Williams",
+      "email": "amandcwilliams97@gmail.com"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload":{
+    "classmap": ["classes/"]
+  }
+}
