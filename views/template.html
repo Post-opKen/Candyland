@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <title>{{@title}}</title>
+</head>
+<body>
+
+<!--Header/navbar-->
+<div>
+    <nav class="navbar">
+        <div class="container d-flex">
+            <a class="nav-item nav-link mx-auto" href="">Profile</a>
+            <a class="nav-item nav-link mx-auto" href="">Learn about candy!</a>
+            <a class="nav-item nav-link mx-auto" href="">Recipes</a>
+            <a class="nav-item nav-link mx-auto" href="">Add a Recipe</a>
+        </div><!-- container -->
+    </nav><!-- nav -->
+</div>
+<h1>{{@title}}</h1>
+
+<!--Include for main page content-->
+<include href="{{@contentPath}}"></include>
+
+<!--Footer-->
+<div class="text-center">
+    <footer>Sugar never lies!<br>Created by Ean Daus and Amanda Williams</footer>
+</div>
+</body>
+</html>

@@ -19,9 +19,15 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 //define a default route
-$f3->route('GET /', function(){
-    $view = new View;
-    echo $view->render('views/home.html');
+$f3->route('GET /', function($f3){
+    //set page title
+    $f3->set('title', 'Scoop');
+
+    //set path for page content
+    $f3->set('contentPath', 'views/home.html');
+
+    $template = new Template;
+    echo $template->render('views/template.html');
 });
 
 //run fat free
