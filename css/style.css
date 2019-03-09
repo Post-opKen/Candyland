@@ -116,8 +116,6 @@ nav div a:hover {
     color: rgb(255,0,220);
     text-shadow: 3px 3px rgb(255, 216, 242);
 }
-nav div *:hover {
-}
 
 /* Main Content */
 div.mainContent {
