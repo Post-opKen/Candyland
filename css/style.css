@@ -27,7 +27,9 @@ These are the same colors as the 'menu candies'
     -strawberry-cream?: rgb(255, 216, 242);
     Footer-Maroon: rgb(112, 56, 91);
  */
-
+/*
+________________________________________________________________________________
+ */
 /* Fonts Import */
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto+Slab');
 
@@ -39,7 +41,9 @@ p {
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
 }
-
+/*
+--------------------------------------------------------------------------------
+ */
 /* Background */
 html {
     background-color: rgb(0,255,255);
@@ -66,7 +70,9 @@ footer {
     color: white;
     font-family: 'Pacifico', cursive;
 }
-
+/*
+--------------------------------------------------------------------------------
+ */
 /* Menu Buttons */
 header div {
     display: inherit;
@@ -109,14 +115,17 @@ nav div * {
     font-family: 'Pacifico', cursive;
     font-size: 1.3em;
     color: white;
+    text-shadow: -1px -1px 3px rgb(204, 199, 195),1px 1px 3px rgb(224,163,218);
 }
 
 /* All buttons hover */
 nav div a:hover {
     color: rgb(255,0,220);
-    text-shadow: 3px 3px rgb(255, 216, 242);
+    text-shadow: 1px 1px rgb(255, 216, 242),-1px -1px rgb(0,255,255);
 }
-
+/*
+--------------------------------------------------------------------------------
+ */
 /* Main Content */
 div.mainContent {
     border: 5px ridge rgba(255, 216, 242, 1);
@@ -126,8 +135,14 @@ div.mainContent {
     padding-left: 10px;
     padding-right: 10px;
 
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* Logo Section */
+
+/*
+________________________________________________________________________________
+ */
+/* Mobile View */
