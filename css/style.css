@@ -5,3 +5,98 @@
     across the whole site.
  */
 
+/*
+These are the same colors as the 'menu candies'
+    Colors:
+    Blue: rgb(0,38,255);
+    Cyan: rgb(0,255,255);
+    Green: rgb(8,255,0);
+    Orange: rgb(255,106,0);
+    Pink: rgb(255,0,220);
+    Purple: rgb(178,0,255);
+    Red: rgb(255,0,0);
+    Yellow: rgb(255,216,0);
+
+    Accent Colors:
+    Gray-Pink: rgb(224,163,218);
+    Gray: rgb(150, 150, 150);
+
+ */
+
+/* Background */
+html {
+    background-color: rgb(0,255,255);
+}
+
+body {
+    background-image: url("../images/candy-button-BLUE.png");
+    background-color: rgb(0,255,255);
+    width: 100%;
+}
+
+/* Header */
+header {
+    background-color: rgb(224,163,218);
+}
+
+/* Footer */
+footer {
+    background-color: rgb(224,163,218);
+}
+
+/* Menu Buttons */
+nav {
+    display: block;
+    background-color: rgb(150, 150, 150);
+}
+/* button 1 */
+div#btn1 {
+    background-image: url("../images/candy-button-BLUE.png");
+}
+/* button 2 */
+div#btn2 {
+    background-image: url("../images/candy-button-RED.png");
+}
+/* button 3 */
+div#btn3 {
+    background-image: url("../images/candy-button-YELLOW.png");
+}
+/* button 4 */
+div#btn4 {
+    background-image: url("../images/candy-button-GREEN.png");
+}
+/* All Buttons */
+nav div {
+    width: 200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 75px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 200px;
+    text-align: center;
+}
+/* button text */
+nav div a {
+    color: white;
+}
+
+/* Main Content */
+div.mainContent {
+    background-color: rgb(224,163,218);
+    width: 90%;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.mainContent::after {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Logo Section */
