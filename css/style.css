@@ -20,7 +20,9 @@ These are the same colors as the 'menu candies'
     Accent Colors:
     Gray-Pink: rgb(224,163,218);
     Gray: rgb(150, 150, 150);
-
+    IceCream-Cone Tan: rgb(255, 220, 140);
+    I-dont-know
+    -strawberry-cream?: rgb(255, 216, 242);
  */
 
 /* Background */
@@ -29,25 +31,27 @@ html {
 }
 
 body {
-    background-image: url("../images/candy-button-BLUE.png");
-    background-color: rgb(0,255,255);
+    background-image: url("../images/LOGO-icon.png");
+    background-color: rgb(255, 216, 242);
     width: 100%;
 }
 
 /* Header */
 header {
-    background-color: rgb(224,163,218);
+    background-color: rgb(255, 220, 140);
+    text-align: center;
 }
 
 /* Footer */
 footer {
-    background-color: rgb(224,163,218);
+    background-color: rgb(255, 220, 140);
 }
 
 /* Menu Buttons */
 nav {
     display: block;
     background-color: rgb(150, 150, 150);
+    padding-bottom: 20px;
 }
 /* button 1 */
 div#btn1 {
