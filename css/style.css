@@ -28,10 +28,23 @@ These are the same colors as the 'menu candies'
     Footer-Maroon: rgb(112, 56, 91);
  */
 
+/* Fonts Import */
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto+Slab');
+
+/* Fonts */
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Pacifico', cursive;
+}
+p {
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+}
+
 /* Background */
 html {
     background-color: rgb(0,255,255);
 }
+
 
 body {
     background-image: url("../images/LOGO-icon(2).png");
@@ -51,6 +64,7 @@ header {
 footer {
     background-color: rgb(112, 56, 91);
     color: white;
+    font-family: 'Pacifico', cursive;
 }
 
 /* Menu Buttons */
@@ -84,17 +98,25 @@ div#btn4 {
 /* All Buttons */
 nav div * {
     width: 200px;
-    padding-top: 15px;
+    padding-top: 6px;
     height: 75px;
 
     background-position: center;
     background-repeat: no-repeat;
     background-size: 200px;
     text-align: center;
-}
-/* button text */
-nav div a {
+
+    font-family: 'Pacifico', cursive;
+    font-size: 1.3em;
     color: white;
+}
+
+/* All buttons hover */
+nav div a:hover {
+    color: rgb(255,0,220);
+    text-shadow: 3px 3px rgb(255, 216, 242);
+}
+nav div *:hover {
 }
 
 /* Main Content */
@@ -106,11 +128,6 @@ div.mainContent {
     padding-left: 10px;
     padding-right: 10px;
 
-    margin-left: auto;
-    margin-right: auto;
-}
-
-div.mainContent::after {
     margin-left: auto;
     margin-right: auto;
 }
