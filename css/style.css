@@ -19,10 +19,13 @@ These are the same colors as the 'menu candies'
 
     Accent Colors:
     Gray-Pink: rgb(224,163,218);
+    Light-Gray: rgb(204, 199, 195);
     Gray: rgb(150, 150, 150);
     IceCream-Cone Tan: rgb(255, 220, 140);
+    Paler Tan: rgb(255, 246, 226);
     I-dont-know
     -strawberry-cream?: rgb(255, 216, 242);
+    Footer-Maroon: rgb(112, 56, 91);
  */
 
 /* Background */
@@ -31,7 +34,7 @@ html {
 }
 
 body {
-    background-image: url("../images/LOGO-icon.png");
+    background-image: url("../images/LOGO-icon(2).png");
     background-color: rgb(255, 216, 242);
     width: 100%;
 }
@@ -40,19 +43,28 @@ body {
 header {
     background-color: rgb(255, 220, 140);
     text-align: center;
+    border: 8px ridge rgb(255, 220, 140);
+    border-radius: 0 0 35px 35px;
 }
 
 /* Footer */
 footer {
-    background-color: rgb(255, 220, 140);
+    background-color: rgb(112, 56, 91);
+    color: white;
 }
 
 /* Menu Buttons */
+header div {
+    display: inherit;
+    border-radius: inherit;
+}
 nav {
     display: block;
-    background-color: rgb(150, 150, 150);
-    padding-bottom: 20px;
+    background-color: rgb(0, 255, 255);
+    border-top: 5px ridge rgb(0, 255, 255);
+    border-radius: inherit;
 }
+
 /* button 1 */
 div#btn1 {
     background-image: url("../images/candy-button-BLUE.png");
@@ -70,10 +82,9 @@ div#btn4 {
     background-image: url("../images/candy-button-GREEN.png");
 }
 /* All Buttons */
-nav div {
+nav div * {
     width: 200px;
     padding-top: 15px;
-    padding-bottom: 15px;
     height: 75px;
 
     background-position: center;
@@ -88,7 +99,8 @@ nav div a {
 
 /* Main Content */
 div.mainContent {
-    background-color: rgb(224,163,218);
+    border: 5px ridge rgba(255, 216, 242, 1);
+    background-color: rgba(255, 246, 226, 0.97);
     width: 90%;
 
     padding-left: 10px;
