@@ -27,9 +27,7 @@ These are the same colors as the 'menu candies'
     -strawberry-cream?: rgb(255, 216, 242);
     Footer-Maroon: rgb(112, 56, 91);
  */
-/*
-________________________________________________________________________________
- */
+/*____________________________________________________________________________*/
 /* Fonts Import */
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto+Slab');
 
@@ -41,9 +39,8 @@ p {
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
 }
-/*
---------------------------------------------------------------------------------
- */
+
+/*----------------------------------------------------------------------------*/
 /* Background */
 html {
     background-color: rgb(0,255,255);
@@ -60,7 +57,7 @@ body {
 header {
     background-color: rgb(255, 220, 140);
     text-align: center;
-    border: 8px ridge rgb(255, 220, 140);
+    border: 8px ridge rgb(255, 230, 173); /*lighter tan*/
     border-radius: 0 0 35px 35px;
 }
 
@@ -70,9 +67,8 @@ footer {
     color: white;
     font-family: 'Pacifico', cursive;
 }
-/*
---------------------------------------------------------------------------------
- */
+
+/*----------------------------------------------------------------------------*/
 /* Menu Buttons */
 header div {
     display: inherit;
@@ -123,12 +119,12 @@ nav div a:hover {
     color: rgb(255,0,220);
     text-shadow: 1px 1px rgb(255, 216, 242),-1px -1px rgb(0,255,255);
 }
-/*
---------------------------------------------------------------------------------
- */
+
+/*----------------------------------------------------------------------------*/
 /* Main Content */
 div.mainContent {
     border: 5px ridge rgba(255, 216, 242, 1);
+    border-radius: 30px 30px 0 0;
     background-color: rgba(255, 246, 226, 0.97);
     width: 90%;
 
@@ -142,7 +138,67 @@ div.mainContent {
 
 /* Logo Section */
 
-/*
-________________________________________________________________________________
- */
+/*____________________________________________________________________________*/
 /* Mobile View */
+/*----------------------------------------------------------------------------*/
+
+
+/* Menu Modifications */
+/* max-width: 992px
+    I suck and I'm sorry
+ */
+@media screen and (max-width: 992px) {
+    header div.spacer {
+        clear: both;
+    }
+
+    header div#logo {
+        float: left;
+        padding: 10px;
+    }
+
+    header nav {
+        border-top: none;
+        border-left: 5px ridge rgb(0, 255, 255);
+        border-bottom-left-radius: 0;
+
+        max-width: 400px;
+        float: right;
+    }
+
+    header nav div div {
+        font-size: 2.7em;
+        padding: 0;
+
+        background-size: 350px;
+        width: 350px;
+        height: 130px;
+
+        border-bottom-right-radius: 0;
+    }
+
+    /* Main Content */
+    div.mainContent {
+        margin: 0;
+        width: 100%;
+    }
+
+    /* Font sizes */
+    div.mainContent {
+        font-size: 3em;
+    }
+    .mainContent h1,
+    .mainContent h2,
+    .mainContent h3,
+    .mainContent h4,
+    .mainContent h5,
+    .mainContent h6 {
+        font-size: 2em;
+    }
+
+    /* Footer */
+    footer * {
+        font-size: 3em;
+    }
+
+}
