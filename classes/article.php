@@ -1,11 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ean
- * Date: 3/10/2019
- * Time: 6:41 PM
+/*
+ * Ean Daus and Amanda Williams
+ * 3/10/2019
+ * article.php
+ * Class that represents an article.
  */
 
+/**
+ * Class Article
+ * A class that represents an article with an author, body and optional image path.
+ * @author Ean Daus
+ * @version 1.0
+ */
 class Article extends Board
 {
     private $_author;
@@ -13,12 +19,12 @@ class Article extends Board
     private $_imgPath;
 
     /**
-     * Article constructor.
-     * @param $path
-     * @param $title
-     * @param $author
-     * @param $body
-     * @param $imgPath
+     * Creates a new Article object.
+     * @param string $path The path from index to the article's location.
+     * @param string $title The title of the article.
+     * @param string $author The author of the article.
+     * @param string $body The author of the article.
+     * @param string $imgPath The path from index to the article's image.
      */
     public function __construct($path, $title, $author, $body, $imgPath = "DEFAULT")
     {
@@ -29,7 +35,7 @@ class Article extends Board
     }
 
     /**
-     * @return mixed
+     * @return string The author of the article.
      */
     public function getAuthor()
     {
@@ -37,7 +43,7 @@ class Article extends Board
     }
 
     /**
-     * @return mixed
+     * @return string The body of the article.
      */
     public function getBody()
     {
@@ -45,13 +51,16 @@ class Article extends Board
     }
 
     /**
-     * @return mixed
+     * @return string The path from index to the article's image.
      */
     public function getImgPath()
     {
         return $this->_imgPath;
     }
 
+    /**
+     * @return string A string representation of the article.
+     */
     public function __toString()
     {
         return parent::__toString() . ", " . $this->_author . ", " . $this->_imgPath;

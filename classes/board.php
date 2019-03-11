@@ -1,6 +1,6 @@
 <?php
-/**
- * Ean Daus
+/*
+ * Ean Daus and Amanda Williams
  * 3/10/2019
  * board.php
  * Class that represents a board with a file path and title.
@@ -8,6 +8,9 @@
 
 /**
  * Class Board
+ * A class that represents a board with a file path and a title.
+ * @author Ean Daus
+ * @version 1.0
  */
 class Board
 {
