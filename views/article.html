@@ -1,0 +1,6 @@
+<div class="mainContent text-center">
+    <h1>{{ @SESSION.article->getTitle() }}</h1>
+    <H3>By {{ @SESSION.article->getAuthor() }}</H3>
+    <p>{{ @SESSION.article->getBody() }}</p>
+    <img src="{{ @SESSION.article->getImgPath() }}">
+</div>

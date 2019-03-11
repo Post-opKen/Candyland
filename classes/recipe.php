@@ -22,7 +22,7 @@ class Recipe extends Article
      * @param string $path The path from index to the recipe's location.
      * @param string $title The title of the recipe.
      * @param string $author The author of the recipe.
-     * @param string $body The author of the recipe.
+     * @param string $body The body of the recipe.
      * @param array $ingredients A list of the ingredients for the recipe.
      * @param integer $time The amount of time it takes to complete the recipe.
      * @param string $imgPath The path from index to the recipe's image.

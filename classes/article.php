@@ -23,7 +23,7 @@ class Article extends Board
      * @param string $path The path from index to the article's location.
      * @param string $title The title of the article.
      * @param string $author The author of the article.
-     * @param string $body The author of the article.
+     * @param string $body The body of the article.
      * @param string $imgPath The path from index to the article's image.
      */
     public function __construct($path, $title, $author, $body, $imgPath = "DEFAULT")
