@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <check if="{{ @mobileStyles=='false' }}">
+        <link rel="stylesheet" href="css/mobile-style.css">
+    </check>
+
     <title>{{@title}}</title>
 </head>
 <body>

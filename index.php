@@ -11,7 +11,12 @@ error_reporting(E_ALL);
 
 //require autoload
 require_once 'vendor/autoload.php';
+//require mobile detect
+require_once 'classes/mobile-detect.php';
+$detect = new Mobile_Detect;
+
 session_start();
+
 
 //create an instance of the base class
 $f3 = Base::instance();
@@ -21,6 +26,14 @@ $f3->set('DEBUG', 3);
 
 //define a default route
 $f3->route('GET /', function($f3){
+    //if website is loaded on a mobile device,
+    global $detect;
+    if($detect->isMobile()==1) {
+        //load the mobile styles
+        $f3->set('mobileStyles', true);
+    }
+    else { $f3->set('mobileStyles', false);}
+
     //set page title
     $f3->set('title', 'Scoop');
 
