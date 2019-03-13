@@ -11,8 +11,6 @@ error_reporting(E_ALL);
 
 //require autoload
 require_once 'vendor/autoload.php';
-//require mobile detect
-require_once 'classes/mobile-detect.php';
 $detect = new Mobile_Detect;
 
 session_start();
@@ -31,6 +29,7 @@ $f3->route('GET /', function($f3){
     if($detect->isMobile()==1) {
         //load the mobile styles
         $f3->set('mobileStyles', true);
+
     }
     else { $f3->set('mobileStyles', false);}
 
