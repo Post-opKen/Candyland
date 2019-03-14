@@ -8,7 +8,8 @@
     <check if="{{ @mobileStyles=='false' }}">
         <link rel="stylesheet" href="css/mobile-style.css">
     </check>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>{{@title}}</title>
 </head>
 <body>
@@ -59,5 +60,8 @@
 <div class="text-center">
     <footer><h3>Sugar never lies!<br>Created by Ean Daus and Amanda Williams</h3></footer>
 </div>
+<check if="{{@contentPath == 'views/signUp.html'}}">
+    <script src="scripts/signUpVal.js"></script>
+</check>
 </body>
 </html>

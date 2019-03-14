@@ -75,5 +75,17 @@ $f3->route('GET /article', function($f3){
     echo $template->render('views/template.html');
 });
 
+//Route for sign up page
+$f3->route('GET|POST /signup', function($f3){
+    //set page title
+    $f3->set('title', 'Sign Up');
+
+    //set path for page content
+    $f3->set('contentPath', 'views/signUp.html');
+
+    $template = new Template;
+    echo $template->render('views/template.html');
+});
+
 //run fat free
 $f3->run();
