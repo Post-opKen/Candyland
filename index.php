@@ -22,17 +22,18 @@ $f3 = Base::instance();
 //fat free error reporting
 $f3->set('DEBUG', 3);
 
+//if website is loaded on a mobile device,
+global $detect;
+if ($detect->isMobile() == 1) {
+    //load the mobile styles
+    $f3->set('mobileStyles', true);
+
+} else {
+    $f3->set('mobileStyles', false);
+}
+
 //define a default route
-$f3->route('GET /', function($f3){
-    //if website is loaded on a mobile device,
-    global $detect;
-    if($detect->isMobile()==1) {
-        //load the mobile styles
-        $f3->set('mobileStyles', true);
-
-    }
-    else { $f3->set('mobileStyles', false);}
-
+$f3->route('GET /', function ($f3) {
     //set page title
     $f3->set('title', 'Scoop');
 
@@ -44,7 +45,7 @@ $f3->route('GET /', function($f3){
 });
 
 //Route for article creation page
-$f3->route('GET /create', function($f3){
+$f3->route('GET /create', function ($f3) {
     //set page title
     $f3->set('title', 'Create');
 
@@ -52,8 +53,7 @@ $f3->route('GET /create', function($f3){
     $f3->set('contentPath', 'views/create.html');
 
     //Has the form been submitted?
-    if(isset($_GET['btn']))
-    {
+    if (isset($_GET['btn'])) {
         $article = new Article('views/article.html', $_GET['title'], $_GET['author'], $_GET['body'], $_GET['img']);
         $_SESSION['article'] = $article;
         $f3->reroute('/article');
@@ -64,7 +64,7 @@ $f3->route('GET /create', function($f3){
 });
 
 //Route for article display page
-$f3->route('GET /article', function($f3){
+$f3->route('GET /article', function ($f3) {
     //set page title
     $f3->set('title', $_SESSION['article']->getTitle());
 
@@ -76,7 +76,7 @@ $f3->route('GET /article', function($f3){
 });
 
 //Route for sign up page
-$f3->route('GET|POST /signup', function($f3){
+$f3->route('GET|POST /signup', function ($f3) {
     //set page title
     $f3->set('title', 'Sign Up');
 
