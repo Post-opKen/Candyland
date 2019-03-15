@@ -1,0 +1,39 @@
+/* users: user_id(PRIMARY KEY), username, password, saved */
+CREATE TABLE candyland_users (
+	user_id INT(4) AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(30),
+	password VARCHAR(30),
+	saved VARCHAR(300)
+);
+/* drop */
+DROP TABLE candyland_users;
+
+/* articles: article_id, author(user_id), text */
+CREATE TABLE candyland_articles (
+	article_id INT AUTO_INCREMENT PRIMARY KEY,
+	image_path VARCHAR(200),
+	author INT(4),
+	title VARCHAR(50),
+	text VARCHAR(10000)
+);
+/* drop */
+DROP TABLE candyland_articles
+
+/* recipes: recipe_id, author, ingredients, instructions */
+CREATE TABLE candyland_recipes (
+	recipe_id INT AUTO_INCREMENT PRIMARY KEY,
+	image_path VARCHAR(200),
+	author INT(4),
+	title VARCHAR(50),
+	ingredients VARCHAR(500),
+	instructions VARCHAR(10000)
+);
+/* drop */
+DROP TABLE candyland_recipes
+
+
+/* INSERT STATEMENTS */
+INSERT INTO candyland_users (username, password, saved) VALUES("", "", "");
+INSERT INTO candyland_articles (image_path, author, title, text) VALUES("", "", "", "");
+INSERT INTO candyland_recipes (image_path, author, title, ingredients, instructions)
+	VALUES("", "", "", "", "");
