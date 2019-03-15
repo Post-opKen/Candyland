@@ -17,7 +17,7 @@ CREATE TABLE candyland_articles (
 	text VARCHAR(10000)
 );
 /* drop */
-DROP TABLE candyland_articles
+DROP TABLE candyland_articles;
 
 /* recipes: recipe_id, author, ingredients, instructions */
 CREATE TABLE candyland_recipes (
@@ -29,11 +29,42 @@ CREATE TABLE candyland_recipes (
 	instructions VARCHAR(10000)
 );
 /* drop */
-DROP TABLE candyland_recipes
+DROP TABLE candyland_recipes;
 
 
 /* INSERT STATEMENTS */
-INSERT INTO candyland_users (username, password, saved) VALUES("", "", "");
-INSERT INTO candyland_articles (image_path, author, title, text) VALUES("", "", "", "");
+INSERT INTO candyland_users (username, password, saved)
+	VALUES("", "", "");
+INSERT INTO candyland_articles (image_path, author, title, text)
+	VALUES("", "", "", "");
 INSERT INTO candyland_recipes (image_path, author, title, ingredients, instructions)
 	VALUES("", "", "", "", "");
+
+
+/* Retrieve User */
+SELECT * FROM candyland_users
+WHERE user_id=1;
+
+/* Validate Log In */
+SELECT user_id FROM candyland_users
+WHERE username = $username
+AND password = $password;
+
+/* Fill Tables */
+INSERT INTO candyland_users (username, password, saved)
+	VALUES("A-man-duh", "Candyland1", "A1, R2");
+INSERT INTO candyland_users (username, password, saved)
+	VALUES("VortexThe42nd", "Candyland2", "A2, R1");
+INSERT INTO candyland_articles (image_path, author, title, text)
+	VALUES("", "1", "SUGAR IS FLAMABLE!", "What? sugar can catch fire and kill your life");
+INSERT INTO candyland_articles (image_path, author, title, text)
+	VALUES("", "2", "EXPODING SUGAR", "Did you know that sugar explodes?");
+INSERT INTO candyland_recipes (image_path, author, title, ingredients, instructions)
+	VALUES("", "1", "Diabetes", "sugar, brown sugar", "mix together, BURN ON THE STOVE");
+INSERT INTO candyland_recipes (image_path, author, title, ingredients, instructions)
+	VALUES("", "2", "Carmel", "sugar, milk, vanilla", "mixe together, SET IT ON FIRE!!");
+
+/* Delete Everything */
+DELETE FROM candyland_users;
+DELETE FROM candyland_articles;
+DELETE FROM candyland_recipes;
