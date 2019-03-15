@@ -26,7 +26,6 @@ global $detect;
 if ($detect->isMobile() == 1) {
     //load the mobile styles
     $f3->set('mobileStyles', true);
-
 } else {
     $f3->set('mobileStyles', false);
 }
@@ -96,7 +95,34 @@ $f3->route('GET|POST /signup', function ($f3) {
         {
             //submit to db
             addUser($_POST['name'], $_POST['pass']);
-            echo 'added user';
+            $f3->reroute('/login');
+        }
+    }
+
+    $template = new Template;
+    echo $template->render('views/template.html');
+});
+
+//Route for log in page
+$f3->route('GET|POST /login', function ($f3) {
+    //set page title
+    $f3->set('title', 'Log in');
+
+    //set path for page content
+    $f3->set('contentPath', 'views/signIn.html');
+
+    //check if form has been submitted
+    if(isset($_POST))
+    {
+        require 'model/validation_functions.php';
+
+        //query DB for login credentials
+        if(false/*TODO The credentials are correct(use function in db-functions)*/)
+        {
+            //save userid to session
+
+            //reroute to home
+            $f3->reroute('/');
         }
     }
 
