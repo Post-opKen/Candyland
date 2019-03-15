@@ -14,26 +14,21 @@
  */
 class Board
 {
-    private $_path;
     private $_title;
+    private $_author;
+    private $_imgPath;
 
     /**
      * Creates a new Board with a file path and a title.
-     * @param $_path String The path from index to the board's location.
-     * @param $_title String The title of the board.
+     * @param $title String The title of the board.
+     * @param string $author The author of the board.
+     * @param string $imgPath The path from index to the board's image.
      */
-    public function __construct($_path, $_title)
+    public function __construct($title, $author, $imgPath = "DEFAULT")
     {
-        $this->_path = $_path;
-        $this->_title = $_title;
-    }
-
-    /**
-     * @return String The file path of the Board.
-     */
-    public function getPath()
-    {
-        return $this->_path;
+        $this->_title = $title;
+        $this->_author = $author;
+        $this->_imgPath = $imgPath;
     }
 
     /**
@@ -45,10 +40,26 @@ class Board
     }
 
     /**
+     * @return string The author of the board.
+     */
+    public function getAuthor()
+    {
+        return $this->_author;
+    }
+
+    /**
+     * @return string The path from index to the board's image.
+     */
+    public function getImgPath()
+    {
+        return $this->_imgPath;
+    }
+
+    /**
      * @return String A string representation of the Board.
      */
     public function __toString()
     {
-        return $this->_title . ': ' . $this->_path;
+        return $this->_title . " By " . $this->_author;
     }
 }

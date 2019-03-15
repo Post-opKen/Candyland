@@ -14,32 +14,17 @@
  */
 class Article extends Board
 {
-    private $_author;
     private $_body;
-    private $_imgPath;
 
     /**
      * Creates a new Article object.
-     * @param string $path The path from index to the article's location.
      * @param string $title The title of the article.
-     * @param string $author The author of the article.
      * @param string $body The body of the article.
-     * @param string $imgPath The path from index to the article's image.
      */
-    public function __construct($path, $title, $author, $body, $imgPath = "DEFAULT")
+    public function __construct($title, $author, $body, $imgPath = "DEFAULT")
     {
-        parent::__construct($path, $title);
-        $this->_author = $author;
+        parent::__construct($title, $author, $imgPath);
         $this->_body = $body;
-        $this->_imgPath = $imgPath;
-    }
-
-    /**
-     * @return string The author of the article.
-     */
-    public function getAuthor()
-    {
-        return $this->_author;
     }
 
     /**
@@ -51,20 +36,14 @@ class Article extends Board
     }
 
     /**
-     * @return string The path from index to the article's image.
-     */
-    public function getImgPath()
-    {
-        return $this->_imgPath;
-    }
-
-    /**
      * @return string A string representation of the article.
      */
     public function __toString()
     {
-        return parent::__toString() . ", " . $this->_author . ", " . $this->_imgPath;
+        return parent::__toString();
     }
+
+
 
 
 }

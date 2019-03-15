@@ -12,26 +12,25 @@
  * @author Ean Daus
  * @version 1.0
  */
-class Recipe extends Article
+class Recipe extends Board
 {
     private $_ingredients = array();
-    private $_time;
+    private $_instructions = array();
+
 
     /**
      * Creates a new Recipe object.
-     * @param string $path The path from index to the recipe's location.
      * @param string $title The title of the recipe.
      * @param string $author The author of the recipe.
-     * @param string $body The body of the recipe.
      * @param array $ingredients A list of the ingredients for the recipe.
-     * @param integer $time The amount of time it takes to complete the recipe.
+     * @param array $instructions A list of the instructions for the recipe.
      * @param string $imgPath The path from index to the recipe's image.
      */
-    public function __construct($path, $title, $author, $body, array $ingredients, $time, $imgPath = "DEFAULT")
+    public function __construct($title, $author, array $ingredients, array $instructions, $imgPath = "DEFAULT")
     {
-        parent::__construct($path, $title, $author, $body, $imgPath);
+        parent::__construct($title, $author, $imgPath);
         $this->_ingredients = $ingredients;
-        $this->_time = $time;
+        $this->_instructions = $instructions;
     }
 
     /**
@@ -43,12 +42,13 @@ class Recipe extends Article
     }
 
     /**
-     * @return integer The amount of time it takes to finish the recipe.
+     * @return array The recipe's ingredient list.
      */
-    public function getTime()
+    public function getInstructions()
     {
-        return $this->_time;
+        return $this->_instructions;
     }
+
 
     /**
      * @return string A string representation of the recipe.
