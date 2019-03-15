@@ -34,7 +34,7 @@ function nameTaken($username)
     global $dbh;
 
     //1. define the query
-    $sql = "SELECT * FROM candyland_users WHERE username = :username";
+    $sql = "SELECT * FROM candyland_user WHERE username = :username";
 
     //2. prepare the statement
     $statement = $dbh->prepare($sql);
@@ -51,24 +51,74 @@ function nameTaken($username)
     return $result!=null;
 }
 
-function addUser($name, $pass)
+//gets a users data by user id
+function getUser($userId)
 {
     global $dbh;
 
-    //1. define the query
-    $sql = "INSERT INTO candyland_users(username, password)
-            VALUES (:username, :password)";
+    //create sql statement
+    $sql = "SELECT * FROM candyland_users WHERE user_id=$userId";
 
-    //2. prepare the statement
+    //prepare the statement
     $statement = $dbh->prepare($sql);
 
-    //3. bind parameters
-    $statement->bindParam(':username', $name, PDO::PARAM_STR);
-    $statement->bindParam(':password', password_hash($pass, PASSWORD_DEFAULT), PDO::PARAM_STR);
+    //Execute statement
+    $statement->execute();
+    $result = $statement->fetchAll();
+    return $result;
+}
 
-    //4. execute the statement
-    $success = $statement->execute();
+function getBoards($boardIds)
+{
+    global $dbh;
+    $outBoards=array();
 
-    //5. return the result
-    return $success;
+    foreach($boardIds as $board)
+    {
+        $id =substr($board,1);
+        //set sql
+        if(substr($board,0)=="A")
+        {
+            $sql = "SELECT * FROM candyland_articles
+                WHERE article_id = $id";
+        }
+        else if(substr($board,0)=="R")
+        {
+            $sql = "SELECT * FROM candyland_recipes
+                WHERE recipe_id = $id";
+        }
+        else
+        {
+            echo "INVALID BOARD TYPE";
+            return;
+        }
+
+        //prepare statement
+        $statement = $dbh->prepare($sql);
+
+        //execute statement
+        $statement->execute();
+
+        //save results
+        $results = $statement->fetchAll();
+
+        //create object
+        if(substr($board,0)=="A")
+        {
+            $output = new Article();
+        }
+        else if(substr($board,0)=="R")
+        {
+            $output = new Recipe();
+        }
+        else
+        {
+            echo "STILL INVALID ID";
+            return;
+        }
+
+        //add to output array
+        $outBoards+=$output;
+    }
+    return $outBoards;
 }
