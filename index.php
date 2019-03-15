@@ -15,7 +15,6 @@ $detect = new Mobile_Detect;
 
 session_start();
 
-
 //create an instance of the base class
 $f3 = Base::instance();
 
@@ -31,6 +30,10 @@ if ($detect->isMobile() == 1) {
 } else {
     $f3->set('mobileStyles', false);
 }
+
+//initialize DB connection
+require 'model/db-functions.php';
+$dbh = connect();
 
 //define a default route
 $f3->route('GET /', function ($f3) {
@@ -82,6 +85,20 @@ $f3->route('GET|POST /signup', function ($f3) {
 
     //set path for page content
     $f3->set('contentPath', 'views/signUp.html');
+
+    //check if form has been submitted
+    if(isset($_POST))
+    {
+        require 'model/validation_functions.php';
+
+        //validate form
+        if(validateUsername($_POST['name']) AND validatePassword($_POST['pass']))
+        {
+            //submit to db
+            addUser($_POST['name'], $_POST['pass']);
+            echo 'added user';
+        }
+    }
 
     $template = new Template;
     echo $template->render('views/template.html');

@@ -34,7 +34,7 @@ function nameTaken($username)
     global $dbh;
 
     //1. define the query
-    $sql = "SELECT * FROM candyland_user WHERE username = :username";
+    $sql = "SELECT * FROM candyland_users WHERE username = :username";
 
     //2. prepare the statement
     $statement = $dbh->prepare($sql);
@@ -49,4 +49,26 @@ function nameTaken($username)
     $result = $statement->fetch(PDO::FETCH_ASSOC);
 
     return $result!=null;
+}
+
+function addUser($name, $pass)
+{
+    global $dbh;
+
+    //1. define the query
+    $sql = "INSERT INTO candyland_users(username, password)
+            VALUES (:username, :password)";
+
+    //2. prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //3. bind parameters
+    $statement->bindParam(':username', $name, PDO::PARAM_STR);
+    $statement->bindParam(':password', password_hash($pass, PASSWORD_DEFAULT), PDO::PARAM_STR);
+
+    //4. execute the statement
+    $success = $statement->execute();
+
+    //5. return the result
+    return $success;
 }
