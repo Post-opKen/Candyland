@@ -1,6 +1,18 @@
 <?php
 
-require("/home/edausgre/config.php");
+//try/catch for db require
+try{
+    if($_SERVER['USER'] == 'edausgre')
+    {
+        require("/home/edausgre/config.php");
+    }else if($_SERVER['USER'] == 'awilliam')
+    {
+        require("/home/awilliam/config.php");
+    }
+}catch (Exception $e)
+{
+    echo $e->getMessage();
+}
 
 function connect()
 {
