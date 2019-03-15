@@ -1,0 +1,42 @@
+/*
+	Candyland database
+	tables
+	-users
+	-articles
+	-recipes
+
+	How big do we want the text columns to be?
+*/
+
+/* users: user_id(PRIMARY KEY), username, password, saved */
+CREATE TABLE candyland_users (
+	user_id INT(4) AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(30),
+	password VARCHAR(30),
+	saved VARCHAR(300)
+);
+/* drop */
+DROP TABLE candyland_users;
+
+/* articles: article_id, author(user_id), text */
+CREATE TABLE candyland_articles (
+	article_id INT AUTO_INCREMENT PRIMARY KEY,
+	image_path VARCHAR(200),
+	author INT(4),
+	title VARCHAR(50),
+	text VARCHAR(800)
+);
+/* drop */
+DROP TABLE candyland_articles
+
+/* recipes: recipe_id, author, ingredients, instructions */
+CREATE TABLE candyland_recipes (
+	recipe_id INT AUTO_INCREMENT PRIMARY KEY,
+	image_path VARCHAR(200),
+	author INT(4),
+	title VARCHAR(50),
+	ingredients VARCHAR(200),
+	instructions VARCHAR(800)
+);
+/* drop */
+DROP TABLE candyland_recipes
