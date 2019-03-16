@@ -15,27 +15,24 @@ $detect = new Mobile_Detect;
 
 session_start();
 
+
 //create an instance of the base class
 $f3 = Base::instance();
 
 //fat free error reporting
 $f3->set('DEBUG', 3);
 
-//if website is loaded on a mobile device,
-global $detect;
-if ($detect->isMobile() == 1) {
-    //load the mobile styles
-    $f3->set('mobileStyles', true);
-} else {
-    $f3->set('mobileStyles', false);
-}
-
-//initialize DB connection
-require 'model/db-functions.php';
-$dbh = connect();
-
 //define a default route
-$f3->route('GET /', function ($f3) {
+$f3->route('GET|POST /', function($f3){
+    //if website is loaded on a mobile device,
+    global $detect;
+    if($detect->isMobile()==1) {
+        //load the mobile styles
+        $f3->set('mobileStyles', true);
+
+    }
+    else { $f3->set('mobileStyles', false);}
+
     //set page title
     $f3->set('title', 'Scoop');
 
@@ -47,7 +44,7 @@ $f3->route('GET /', function ($f3) {
 });
 
 //Route for article creation page
-$f3->route('GET /create', function ($f3) {
+$f3->route('GET /create', function($f3){
     //set page title
     $f3->set('title', 'Create');
 
@@ -55,7 +52,8 @@ $f3->route('GET /create', function ($f3) {
     $f3->set('contentPath', 'views/create.html');
 
     //Has the form been submitted?
-    if (isset($_GET['btn'])) {
+    if(isset($_GET['btn']))
+    {
         $article = new Article('views/article.html', $_GET['title'], $_GET['author'], $_GET['body'], $_GET['img']);
         $_SESSION['article'] = $article;
         $f3->reroute('/article');
@@ -66,7 +64,7 @@ $f3->route('GET /create', function ($f3) {
 });
 
 //Route for article display page
-$f3->route('GET /article', function ($f3) {
+$f3->route('GET /article', function($f3){
     //set page title
     $f3->set('title', $_SESSION['article']->getTitle());
 
@@ -78,55 +76,42 @@ $f3->route('GET /article', function ($f3) {
 });
 
 //Route for sign up page
-$f3->route('GET|POST /signup', function ($f3) {
+$f3->route('GET|POST /signup', function($f3){
     //set page title
     $f3->set('title', 'Sign Up');
 
     //set path for page content
     $f3->set('contentPath', 'views/signUp.html');
 
-    //check if form has been submitted
-    if(isset($_POST))
-    {
-        require 'model/validation_functions.php';
-
-        //validate form
-        if(validateUsername($_POST['name']) AND validatePassword($_POST['pass']))
-        {
-            //submit to db
-            addUser($_POST['name'], $_POST['pass']);
-            $f3->reroute('/login');
-        }
-    }
-
     $template = new Template;
     echo $template->render('views/template.html');
 });
 
-//Route for log in page
-$f3->route('GET|POST /login', function ($f3) {
-    //set page title
-    $f3->set('title', 'Log in');
+//Route for profile.html
+$f3->route('GET|POST /profile', function ($f3) {
+    //temporary assignment, delete later
+    $_SESSION['user'] = new Profile(1);
 
-    //set path for page content
-    $f3->set('contentPath', 'views/signIn.html');
+    //---------------------------------------------
+    //if website is loaded on a mobile device,
+    global $detect;
+    if($detect->isMobile()==1) {
+        //load the mobile styles
+        $f3->set('mobileStyles', true);
 
-    //check if form has been submitted
-    if(isset($_POST))
-    {
-        require 'model/validation_functions.php';
-
-        //query DB for login credentials
-        if(false/*TODO The credentials are correct(use function in db-functions)*/)
-        {
-            //save userid to session
-
-            //reroute to home
-            $f3->reroute('/');
-        }
     }
+    else { $f3->set('mobileStyles', false);}
 
-    $template = new Template;
+    //---------------------------------------------
+    //get username from user object
+    echo"output:";
+    print_r($_SESSION);
+
+    //---------------------------------------------------
+    $f3->set('title', 'Profile');
+    $f3->set('contentPath', 'views/profile.html');
+
+    $template = new Template();
     echo $template->render('views/template.html');
 });
 

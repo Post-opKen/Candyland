@@ -5,6 +5,7 @@
  * this class creates a profile object
  */
 
+
 class Profile
 {
     //fields
@@ -15,7 +16,9 @@ class Profile
     //construcor
     function __construct($userId)
     {
+        echo $userId;
         $result = getUser($userId);
+        print_r($result);
 
         $this->_userId=$userId;
         $this->_username = $result['username'];
