@@ -65,6 +65,7 @@ function getUser($userId)
     //Execute statement
     $statement->execute();
     $result = $statement->fetchAll();
+    //print_r($result);
     return $result;
 }
 

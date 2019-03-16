@@ -8,19 +8,16 @@
 class Profile
 {
     //fields
+    private $_userId;
     private $_username;
     private $_boards;
 
     //construcor
     function __construct($userId)
     {
-        /*
-        $sql = "SELECT * FROM candyland_users WHERE user_id=$userId";
-        $statement=$dbh->prepare($sql);
-        */
-
         $result = getUser($userId);
 
+        $this->_userId=$userId;
         $this->_username = $result['username'];
         $this->_boards = explode(", ", $result['saved']);
     }
@@ -28,5 +25,10 @@ class Profile
     function boardsToString()
     {
         implode(", ",$this->_boards);
+    }
+
+    function getUserBoards()
+    {
+        return getBoards($this->_boards);
     }
 }
