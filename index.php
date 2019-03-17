@@ -47,10 +47,9 @@ $f3->route('GET|POST /', function ($f3) {
 });
 
 //Route for article creation page
-$f3->route('GET /create', function ($f3) {
+$f3->route('GET|POST /create', function ($f3) {
     //check if user is logged in
-    if(!isset($_SESSION['user']))
-    {
+    if (!isset($_SESSION['user'])) {
         //Redirect
         $f3->reroute('/login');
     }
@@ -60,14 +59,30 @@ $f3->route('GET /create', function ($f3) {
 
     //set path for page content
     $f3->set('contentPath', 'views/create.html');
+    
+    //Has the form been submitted?`
+    if (!empty($_POST)) {
+        //Ensure fields not blank
+        $isValid = true;
+        if ($_POST['title'] == '') {
+            $isValid = false;
+            $f3->set('titleError', 'Your article must have a title!');
+        }
+        if ($_POST['body'] == '') {
+            $isValid = false;
+            $f3->set('bodyError', 'Your article must have a body!');
+        }
+        if ($isValid) {
+            //add article to DB
+            addArticle($_POST['title'], $_SESSION['user']->getUserId(), $_POST['body'], $_POST['img']);
 
-    //Has the form been submitted?
-    if (isset($_GET['btn'])) {
-        $article = new Article($_GET['title'], $_GET['author'], $_GET['body'], $_GET['img']);
-        $_SESSION['article'] = $article;
-        $f3->reroute('/article');
+            //clear POST data
+            $_POST = array();
+
+            //set success message
+            $f3->set('createSuccess', 'Article created!');
+        }
     }
-
     $template = new Template;
     echo $template->render('views/template.html');
 });
@@ -91,7 +106,7 @@ $f3->route('GET|POST /signup', function ($f3) {
     //set path for page content
     $f3->set('contentPath', 'views/signUp.html');
     //check if form has been submitted
-    if (isset($_POST)) {
+    if (!empty($_POST)) {
         require 'model/validation_functions.php';
         //validate form
         if (validateUsername($_POST['name']) AND validatePassword($_POST['pass'])) {
@@ -140,8 +155,7 @@ $f3->route('GET|POST /login', function ($f3) {
 //Route for profile.html
 $f3->route('GET|POST /profile', function ($f3) {
     //Redirect
-    if(!isset($_SESSION['user']))
-    {
+    if (!isset($_SESSION['user'])) {
         //User is not logged in
         $f3->reroute('/login');
     }

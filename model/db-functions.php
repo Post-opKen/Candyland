@@ -98,6 +98,31 @@ function loginUser($user, $pass)
     }
 }
 
+//adds a new user to the database
+function addArticle($title, $author, $text, $image)
+{
+    global $dbh;
+
+    //1. define the query
+    $sql = "INSERT INTO candyland_articles(title, author, text, image_path)
+	            VALUES (:title, :author, :text, :image)";
+
+    //2. prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //3. bind parameters
+    $statement->bindParam(':title', $title, PDO::PARAM_STR);
+    $statement->bindParam(':author', $author, PDO::PARAM_STR);
+    $statement->bindParam(':text', $text, PDO::PARAM_STR);
+    $statement->bindParam(':image', $image, PDO::PARAM_STR);
+
+    //4. execute the statement
+    $success = $statement->execute();
+
+    //5. return the result
+    return $success;
+}
+
 //gets a users data by user id
 function getUser($userId)
 {

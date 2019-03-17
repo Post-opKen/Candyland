@@ -1,24 +1,30 @@
 <!--Home page content-->
 <div class="mainContent text-center">
     <h1>{{ @title }}</h1>
-    <form>
-        <!--TODO: Author's name should come from the user's account. Only here for testing.-->
-        <div class="form-group">
-            <label class="form-control-label" for="author"> Author's Name:</label>
-            <input class="form-control" type="text" name="author" id="author">
-        </div>
-
-
+    <form method="post" action="">
+        <check if="{{isset(@createSuccess)}}">
+            <p class="text-success">{{@createSuccess}}</p>
+        </check>
 
         <div class="form-group">
             <label class="form-control-label" for="title"> Title:</label>
-            <input class="form-control" type="text" name="title" id="title">
+            <input class="form-control" type="text" name="title" id="title"
+            <check if="{{isset(@POST.title)}}">value="{{@POST.title}}"</check>
+            >
+
         </div>
+        <check if="{{isset(@titleError)}}">
+            <p class="text-danger">{{@titleError}}</p>
+        </check>
 
         <div class="form-group">
+            <!--Do not add whitespace to textarea-->
             <label class="form-control-label" for="body"> Article Body:</label>
-            <textarea class="form-control" name="body" id="body"></textarea>
+            <textarea class="form-control" name="body" id="body"><check if="{{isset(@POST.body)}}">{{@POST.body}}</check></textarea>
         </div>
+        <check if="{{isset(@bodyError)}}">
+            <p class="text-danger">{{@bodyError}}</p>
+        </check>
 
         <div class="form-group">
             <label class="form-control-label" for="img"> Image URL:</label>
