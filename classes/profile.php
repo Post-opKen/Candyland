@@ -17,13 +17,10 @@ class Profile
     private $_boards;
 
     //construcor
-    function __construct($userId)
+    function __construct($userId, $username, $boards)
     {
-        //test array
-        $boards = 'A3, A4, R3, R4';//array('A3', 'A4', 'R3', 'R4');
-
-        $this->_userId=$userId;
-        $this->_username = 'awilliams';//$result['username'];
+        $this->_userId=$userId;//$result['user_id'];
+        $this->_username = $username;//$result['username'];
         $this->_boards = explode(", ", $boards);//$result['saved']
     }
 

@@ -2,7 +2,7 @@
 CREATE TABLE candyland_users (
 	user_id INT(4) AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(30),
-	password VARCHAR(30),
+	password VARCHAR(60),
 	saved VARCHAR(300)
 );
 /* drop */
