@@ -74,41 +74,56 @@ function getBoards($boardIds)
     global $dbh;
     $outBoards=array();
 
-    foreach($boardIds as $board)
+    foreach($boardIds as $boardId)
     {
-        $id =substr($board,1);
+        $id = substr($boardId,1);
+        echo "<p>".substr($boardId,0,1)."</p>";
+        echo "<p>".$id."</p>";
+
         //set sql
-        if(substr($board,0)=="A")
+        if(substr($boardId,0,1)=="A")
         {
             $sql = "SELECT * FROM candyland_articles
                 WHERE article_id = $id";
+            //echo "<p>Article</p>";
         }
-        else if(substr($board,0)=="R")
+        else if(substr($boardId,0,1)=="R")
         {
             $sql = "SELECT * FROM candyland_recipes
                 WHERE recipe_id = $id";
+            //echo "<p>this is a Recipe</p>";
         }
         else
         {
-            echo "INVALID BOARD TYPE";
+            echo "<p>INVALID BOARD TYPE</p>";
             return;
         }
 
+        //echo $sql;
+        //echo "sam";
+        //print_r($dbh->prepare($sql));
+        //echo"sam";
+
         //prepare statement
         $statement = $dbh->prepare($sql);
+        //echo "pearl2";
 
         //execute statement
         $statement->execute();
+        //echo "pearl3";
 
         //save results
         $results = $statement->fetchAll();
 
+        //echo "pearl4";
+        //print_r($results);
+
         //create object
-        if(substr($board,0)=="A")
+        if(substr($boardId,0)=="A")
         {
             $output = new Article();
         }
-        else if(substr($board,0)=="R")
+        else if(substr($boardId,0)=="R")
         {
             $output = new Recipe();
         }
@@ -120,6 +135,11 @@ function getBoards($boardIds)
 
         //add to output array
         $outBoards+=$output;
+        print_r($output);
     }
     return $outBoards;
 }
+
+//print_r(getUser(1));
+
+//print_r(getBoards(array('A3','A4','R3','R4')));

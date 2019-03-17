@@ -104,8 +104,6 @@ $f3->route('GET|POST /profile', function ($f3) {
 
     //---------------------------------------------
     //get username from user object
-    echo"output:";
-    print_r($_SESSION);
 
     //---------------------------------------------------
     $f3->set('title', 'Profile');

@@ -5,6 +5,9 @@
  * this class creates a profile object
  */
 
+require_once ('model/db-functions.php');
+
+$dbh=connect();
 
 class Profile
 {
@@ -16,15 +19,29 @@ class Profile
     //construcor
     function __construct($userId)
     {
-        echo $userId;
-        $result = getUser($userId);
-        print_r($result);
+        //test array
+        $boards = 'A3, A4, R3, R4';//array('A3', 'A4', 'R3', 'R4');
 
         $this->_userId=$userId;
-        $this->_username = $result['username'];
-        $this->_boards = explode(", ", $result['saved']);
+        $this->_username = 'awilliams';//$result['username'];
+        $this->_boards = explode(", ", $boards);//$result['saved']
     }
 
+    //getters
+    function getUserId()
+    {
+        return $this->_userId;
+    }
+    function getUsername()
+    {
+        return $this->_username;
+    }
+    function getBoards()
+    {
+        return $this->_boards;
+    }
+
+    //methods
     function boardsToString()
     {
         implode(", ",$this->_boards);
