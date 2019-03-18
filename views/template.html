@@ -26,8 +26,8 @@
         <nav class="navbar">
             <div class="container d-flex">
                 <div id="btn1">
-                    <a class="nav-item nav-link mx-auto" href="profile">
-                        Profile</a>
+                    <a class="nav-item nav-link mx-auto" href="/328/Candyland">
+                        Home</a>
                 </div>
                 <div id="btn2">
                     <a class="nav-item nav-link mx-auto" href="articles">
@@ -38,8 +38,17 @@
                         Recipes</a>
                 </div>
                 <div id="btn4">
-                    <a class="nav-item nav-link mx-auto" href="login">
-                        Log In</a>
+                    <!--if logged in, profile button. otherwise, login button.-->
+                    <check if="{{isset(@SESSION.user)}}">
+                        <true>
+                            <a class="nav-item nav-link mx-auto" href="profile">
+                                Profile</a>
+                        </true>
+                        <false>
+                            <a class="nav-item nav-link mx-auto" href="login">
+                                Log In</a>
+                        </false>
+                    </check>
                 </div>
 
             </div><!-- container -->
@@ -62,6 +71,9 @@
 </div>
 <check if="{{@contentPath == 'views/signUp.html'}}">
     <script src="scripts/signUpVal.js"></script>
+</check>
+<check if="{{@contentPath == 'views/create.html'}}">
+    <script src="scripts/dynamicInputs.js"></script>
 </check>
 </body>
 </html>
