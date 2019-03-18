@@ -3,9 +3,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 //classes
-require "../classes/board.php";
-require "../classes/article.php";
-require "../classes/recipe.php";
+//require "../classes/board.php";
+//require "../classes/article.php";
+//require "../classes/recipe.php";
 
 //try/catch for db require
 try{

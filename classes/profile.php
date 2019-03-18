@@ -19,11 +19,11 @@ class Profile
     function __construct($userId)
     {
         //test array
-        $boards = 'A3, A4, R3, R4';//array('A3', 'A4', 'R3', 'R4');
-
+        //$boards = 'A3, A4, R3, R4';//array('A3', 'A4', 'R3', 'R4');
+        $user = getUser($userId);
         $this->_userId=$userId;
-        $this->_username = 'awilliams';//$result['username'];
-        $this->_boards = explode(", ", $boards);//$result['saved']
+        $this->_username = $user['username'];
+        $this->_boards = explode(", ", $user['saved']);
     }
 
     //getters
