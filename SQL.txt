@@ -1,8 +1,8 @@
 /* users: user_id(PRIMARY KEY), username, password, saved */
 CREATE TABLE candyland_users (
-	user_id INT(4) AUTO_INCREMENT PRIMARY KEY,
-	username VARCHAR(30),
-	password VARCHAR(60),
+	user_id INT(4) AUTO_INCREMENT PRIMARY KEY ,
+	username VARCHAR(30) NOT NULL,
+	password VARCHAR(60) NOT NULL,
 	saved VARCHAR(300)
 );
 /* drop */
@@ -43,12 +43,19 @@ INSERT INTO candyland_recipes (image_path, author, title, ingredients, instructi
 
 /* Retrieve User */
 SELECT * FROM candyland_users
-WHERE user_id=1;
+WHERE user_id=$userId;
 
 /* Validate Log In */
 SELECT user_id FROM candyland_users
 WHERE username = $username
 AND password = $password;
+
+/* Get Board BY ID */
+SELECT * FROM candyland_articles
+WHERE article_id = $article_id;
+
+SELECT * FROM candyland_recipes
+WHERE recipe_id = $recipe_id;
 
 /* Fill Tables */
 INSERT INTO candyland_users (username, password, saved)
