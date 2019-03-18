@@ -5,17 +5,9 @@
  * this class creates a profile object
  */
 
-require_once('model/db-functions.php');
+require_once ('model/db-functions.php');
+connect();
 
-$dbh = connect();
-
-/**
- * Class Profile
- * A class that represents a profile with an id, username and list of saved boards.
- * @author Amanda Williams
- * @author Ean Daus
- * @version 1.0
- */
 class Profile
 {
     //fields
@@ -24,57 +16,38 @@ class Profile
     private $_boards;
 
     //construcor
-
-    /**
-     * Creates a new Profile object.
-     * @param $userId int The profile's id number.
-     * @param $username string The profile's username.
-     * @param $boards string The profile's saved boards, as a comma separated list.
-     */
-    function __construct($userId, $username, $boards)
+    function __construct($userId)
     {
-        $this->_userId = $userId;//$result['user_id'];
-        $this->_username = $username;//$result['username'];
+        //test array
+        $boards = 'A3, A4, R3, R4';//array('A3', 'A4', 'R3', 'R4');
+
+        $this->_userId=$userId;
+        $this->_username = 'awilliams';//$result['username'];
         $this->_boards = explode(", ", $boards);//$result['saved']
     }
 
     //getters
-
-    /**
-     * Gets the profile's id.
-     * @return int The profile's id number.
-     */
     function getUserId()
     {
         return $this->_userId;
     }
-
-    /**
-     * Gets the profile's username.
-     * @return string The profile's username.
-     */
     function getUsername()
     {
         return $this->_username;
     }
-
-    /**
-     * Gets the profile's saved boards.
-     * @return array The profile's array of saved boards.
-     */
     function getBoards()
     {
         return $this->_boards;
     }
 
-    //other methods
-
-    /**
-     * Returns a string version of the profile's saved boards.
-     * @return string The profile's array of saved boards as a comma separated string.
-     */
+    //methods
     function boardsToString()
     {
-        return implode(", ", $this->_boards);
+        implode(", ",$this->_boards);
+    }
+
+    function getUserBoards()
+    {
+        return getBoards($this->_boards);
     }
 }

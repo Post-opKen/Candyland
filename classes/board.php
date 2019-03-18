@@ -14,22 +14,45 @@
  */
 class Board
 {
+    /*
+    private $_path;
+    private $_title;
+    */
+
+    //Amanda's suggested fields
     private $_title;
     private $_author;
-    private $_imgPath;
+    private $_image_path;
 
     /**
      * Creates a new Board with a file path and a title.
-     * @param $title String The title of the board.
-     * @param string $author The author of the board.
-     * @param string $imgPath The path from index to the board's image.
+     * @param $_path String The path from index to the board's location.
+     * @param $_title String The title of the board.
      */
-    public function __construct($title, $author, $imgPath = "DEFAULT")
+    /*
+    public function __construct($_path, $_title)
+    {
+        $this->_path = $_path;
+        $this->_title = $_title;
+    }
+    */
+    //Amanda's suggested constructor
+    public function __construct($title, $author, $imagePath)
     {
         $this->_title = $title;
-        $this->_author = $author;
-        $this->_imgPath = $imgPath;
+        $this->_author= $author;
+        $this->_image_path=$imagePath;
     }
+
+    /**
+     * @return String The file path of the Board.
+     */
+    /*
+    public function getPath()
+    {
+        return $this->_path;
+    }
+    */
 
     /**
      * @return String The title of the Board.
@@ -40,7 +63,7 @@ class Board
     }
 
     /**
-     * @return string The author of the board.
+     * @return string The author of the article.
      */
     public function getAuthor()
     {
@@ -48,11 +71,11 @@ class Board
     }
 
     /**
-     * @return string The path from index to the board's image.
+     * @return string The path from index to the article's image.
      */
-    public function getImgPath()
+    public function getImagePath()
     {
-        return $this->_imgPath;
+        return $this->_image_path;
     }
 
     /**
@@ -60,6 +83,6 @@ class Board
      */
     public function __toString()
     {
-        return $this->_title . " By " . $this->_author;
+        return $this->_title . ': ';
     }
 }
