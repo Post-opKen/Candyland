@@ -14,45 +14,22 @@
  */
 class Board
 {
-    /*
-    private $_path;
-    private $_title;
-    */
-
-    //Amanda's suggested fields
     private $_title;
     private $_author;
-    private $_image_path;
+    private $_imgPath;
 
     /**
      * Creates a new Board with a file path and a title.
-     * @param $_path String The path from index to the board's location.
-     * @param $_title String The title of the board.
+     * @param $title String The title of the board.
+     * @param string $author The author of the board.
+     * @param string $imgPath The path from index to the board's image.
      */
-    /*
-    public function __construct($_path, $_title)
-    {
-        $this->_path = $_path;
-        $this->_title = $_title;
-    }
-    */
-    //Amanda's suggested constructor
-    public function __construct($title, $author, $imagePath)
+    public function __construct($title, $author, $imgPath = "DEFAULT")
     {
         $this->_title = $title;
-        $this->_author= $author;
-        $this->_image_path=$imagePath;
+        $this->_author = $author;
+        $this->_imgPath = $imgPath;
     }
-
-    /**
-     * @return String The file path of the Board.
-     */
-    /*
-    public function getPath()
-    {
-        return $this->_path;
-    }
-    */
 
     /**
      * @return String The title of the Board.
@@ -63,7 +40,7 @@ class Board
     }
 
     /**
-     * @return string The author of the article.
+     * @return string The author of the board.
      */
     public function getAuthor()
     {
@@ -71,11 +48,11 @@ class Board
     }
 
     /**
-     * @return string The path from index to the article's image.
+     * @return string The path from index to the board's image.
      */
-    public function getImagePath()
+    public function getImgPath()
     {
-        return $this->_image_path;
+        return $this->_imgPath;
     }
 
     /**
@@ -83,6 +60,6 @@ class Board
      */
     public function __toString()
     {
-        return $this->_title . ': ';
+        return $this->_title . " By " . $this->_author;
     }
 }

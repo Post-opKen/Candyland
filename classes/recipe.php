@@ -12,51 +12,25 @@
  * @author Ean Daus
  * @version 1.0
  */
-class Recipe extends Board //Article
+class Recipe extends Board
 {
-    /*
     private $_ingredients = array();
-    private $_time;
-    */
+    private $_instructions = array();
 
-    //Amanda's suggested fields
-    private $_ingredients;
-    private $_instructions;
 
     /**
      * Creates a new Recipe object.
-     * @param string $path The path from index to the recipe's location.
      * @param string $title The title of the recipe.
      * @param string $author The author of the recipe.
-     * @param string $body The body of the recipe.
      * @param array $ingredients A list of the ingredients for the recipe.
-     * @param integer $time The amount of time it takes to complete the recipe.
+     * @param array $instructions A list of the instructions for the recipe.
      * @param string $imgPath The path from index to the recipe's image.
      */
-    /*
-    public function __construct($path, $title, $author, $body, array $ingredients, $time, $imgPath = "DEFAULT")
-    {
-        parent::__construct($path, $title, $author, $body, $imgPath);
-        $this->_ingredients = $ingredients;
-        $this->_time = $time;
-    }
-    */
-
-    //Amanda's suggested constructor
-    /**
-     * Recipe constructor.
-     * @param $title
-     * @param $author
-     * @param $ingredients
-     * @param $instructions
-     * @param string $imgPath
-     */
-    public function __construct($title, $author, $ingredients, $instructions, $imgPath = "DEFAULT")
+    public function __construct($title, $author, array $ingredients, array $instructions, $imgPath = "DEFAULT")
     {
         parent::__construct($title, $author, $imgPath);
         $this->_ingredients = $ingredients;
-        $this->_instructions=$instructions;
-
+        $this->_instructions = $instructions;
     }
 
     /**
@@ -68,23 +42,13 @@ class Recipe extends Board //Article
     }
 
     /**
-     * provides the instructions of the recipe.
-     * @return mixed the instructions
+     * @return array The recipe's ingredient list.
      */
     public function getInstructions()
     {
         return $this->_instructions;
     }
 
-    /**
-     * @return integer The amount of time it takes to finish the recipe.
-     */
-    /*
-    public function getTime()
-    {
-        return $this->_time;
-    }
-    */
 
     /**
      * @return string A string representation of the recipe.
