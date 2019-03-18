@@ -1,4 +1,28 @@
-<div class="mainContent">
-<h1>{{ @title }}</h1>
+<div class="mainContent text-center">
+    <h1>{{ @username }}</h1>
 
+    <!--TODO make into a candy button-->
+    <a class="btn btn-primary" href="create">Create new board</a>
+
+    <!--Display all saved articles/recipes-->
+    <div class="container" id="boardDisplay">
+        <!--Articles-->
+        <div class="row">
+            <div class="col-5">
+                <repeat group="{{@boards}}" value="{{@board}}">
+                    <check if="{{get_class(@board) == 'Article'}}">
+                        <p>ITS AN ARTICLE</p>
+                    </check>
+                </repeat>
+            </div>
+
+            <div class="col-5">
+                <repeat group="{{@boards}}" value="{{@board}}">
+                    <check if="{{get_class(@board) == 'Recipe'}}">
+                        <p>ITS A RECIPE</p>
+                    </check>
+                </repeat>
+            </div>
+        </div>
+    </div>
 </div>

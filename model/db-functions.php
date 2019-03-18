@@ -142,6 +142,7 @@ function getUser($userId)
     return $result;
 }
 
+//returns an array of board objects
 function getBoards($boardIds)
 {
     global $dbh;
@@ -176,7 +177,7 @@ function getBoards($boardIds)
         if (substr($boardId, 0, 1) == "A") {
             $output = new Article($results[0]['title'], $results[0]['author'], $results[0]['text']);
         } else if (substr($boardId, 0, 1) == "R") {
-            $output = new Recipe($results[0]['title'], $results[0]['author'], $results[0]['ingredients'], $results[0]['instructions']);
+            $output = new Recipe($results[0]['title'], $results[0]['author'], explode(", ", $results[0]['ingredients']), explode(", ", $results[0]['instructions']));
         } else {
             echo "STILL INVALID ID";
             return;

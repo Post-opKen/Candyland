@@ -160,14 +160,13 @@ $f3->route('GET|POST /profile', function ($f3) {
         $f3->reroute('/login');
     }
 
-    //temporary assignment, delete later
-    $_SESSION['user'] = new Profile(1);
+    //Set f3 vars for user info
+    $f3->set('userId', $_SESSION['user']->getUserId());
+    $f3->set('username', $_SESSION['user']->getUsername());
+    $f3->set('boards', $_SESSION['user']->getBoards());
+    $f3->set('boardStrings', $_SESSION['user']->getBoardStrings());
 
-
-    //---------------------------------------------
-    //get username from user object
-
-    //---------------------------------------------------
+    //Set f3 vars for template
     $f3->set('title', 'Profile');
     $f3->set('contentPath', 'views/profile.html');
 

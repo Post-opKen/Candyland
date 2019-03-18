@@ -21,9 +21,10 @@ class Profile
     //fields
     private $_userId;
     private $_username;
+    private $_boardStrings;
     private $_boards;
 
-    //construcor
+    //constructor
 
     /**
      * Creates a new Profile object.
@@ -35,7 +36,8 @@ class Profile
     {
         $this->_userId = $userId;//$result['user_id'];
         $this->_username = $username;//$result['username'];
-        $this->_boards = explode(", ", $boards);//$result['saved']
+        $this->_boardStrings = explode(", ", $boards);//$result['saved']
+        $this->_boards = getBoards($this->_boardStrings);
     }
 
     //getters
@@ -60,11 +62,20 @@ class Profile
 
     /**
      * Gets the profile's saved boards.
-     * @return array The profile's array of saved boards.
+     * @return array The profile's array of saved board objects.
      */
     function getBoards()
     {
         return $this->_boards;
+    }
+
+    /**
+     * Gets the profile's saved board strings.
+     * @return array The profile's array of saved boards in strings.
+     */
+    function getBoardStrings()
+    {
+        return $this->_boardStrings;
     }
 
     //other methods

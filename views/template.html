@@ -8,6 +8,9 @@
     <check if="{{ @mobileStyles=='false' }}">
         <link rel="stylesheet" href="css/mobile-style.css">
     </check>
+    <check if="{{ @title == 'Profile' }}">
+        <link rel="stylesheet" href="css/profileStyles.css">
+    </check>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>{{@title}}</title>
@@ -23,15 +26,15 @@
         <nav class="navbar">
             <div class="container d-flex">
                 <div id="btn1">
-                    <a class="nav-item nav-link mx-auto" href="">
+                    <a class="nav-item nav-link mx-auto" href="profile">
                         Profile</a>
                 </div>
                 <div id="btn2">
-                    <a class="nav-item nav-link mx-auto" href="">
-                        Scoop</a>
+                    <a class="nav-item nav-link mx-auto" href="articles">
+                        Articles</a>
                 </div>
                 <div id="btn3">
-                    <a class="nav-item nav-link mx-auto" href="">
+                    <a class="nav-item nav-link mx-auto" href="recipes">
                         Recipes</a>
                 </div>
                 <div id="btn4">
