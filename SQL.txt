@@ -71,7 +71,7 @@ INSERT INTO candyland_articles (image_path, author, title, text)
 INSERT INTO candyland_recipes (image_path, author, title, ingredients, instructions)
 	VALUES("", "1", "Diabetes", "sugar| brown sugar", "mix together| BURN ON THE STOVE");
 INSERT INTO candyland_recipes (image_path, author, title, ingredients, instructions)
-	VALUES("", "2", "Carmel", "sugar, milk| vanilla", "mixe together| SET IT ON FIRE!!");
+	VALUES("", "2", "Carmel", "sugar| milk| vanilla", "mixe together| SET IT ON FIRE!!");
 
 /* Delete Everything */
 DELETE FROM candyland_users;
