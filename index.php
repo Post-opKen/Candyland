@@ -47,6 +47,10 @@ $f3->route('GET|POST /', function ($f3) {
     $template = new Template;
     echo $template->render('views/template.html');
 });
+//Route to home
+$f3->route('GET|POST /home', function ($f3) {
+    $f3->reroute('/');
+});
 
 #-------------------------------------------------------------------------------
 //Route for article creation page
