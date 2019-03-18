@@ -32,7 +32,7 @@ if ($detect->isMobile() == 1) {
 } else {
     $f3->set('mobileStyles', false);
 }
-
+#-------------------------------------------------------------------------------
 //define a default route
 $f3->route('GET|POST /', function ($f3) {
 
@@ -48,6 +48,7 @@ $f3->route('GET|POST /', function ($f3) {
     echo $template->render('views/template.html');
 });
 
+#-------------------------------------------------------------------------------
 //Route for article creation page
 $f3->route('GET|POST /create', function ($f3) {
     //check if user is logged in
@@ -89,18 +90,20 @@ $f3->route('GET|POST /create', function ($f3) {
     echo $template->render('views/template.html');
 });
 
+#-------------------------------------------------------------------------------
 //Route for article display page
 $f3->route('GET /article', function ($f3) {
     //set page title
     $f3->set('title', $_SESSION['article']->getTitle());
 
     //set path for page content
-    $f3->set('contentPath', 'views/article.html');
+    $f3->set('contentPath', 'views/articles.html');
 
     $template = new Template;
     echo $template->render('views/template.html');
 });
 
+#-------------------------------------------------------------------------------
 //Route for sign up page
 $f3->route('GET|POST /signup', function ($f3) {
     //set page title
@@ -121,6 +124,7 @@ $f3->route('GET|POST /signup', function ($f3) {
     echo $template->render('views/template.html');
 });
 
+#-------------------------------------------------------------------------------
 //Route for login
 $f3->route('GET|POST /login', function ($f3) {
     //set page title
@@ -154,6 +158,7 @@ $f3->route('GET|POST /login', function ($f3) {
     echo $template->render('views/template.html');
 });
 
+#-------------------------------------------------------------------------------
 //Route for profile.html
 $f3->route('GET|POST /profile', function ($f3) {
     //Redirect
@@ -176,5 +181,26 @@ $f3->route('GET|POST /profile', function ($f3) {
     echo $template->render('views/template.html');
 });
 
+#-------------------------------------------------------------------------------
+//Route for articles.html
+$f3->route('GET|POST /articles', function ($f3) {
+    $f3->set('title', "All Articles");
+    $f3->set('contentPath', 'views/articles.html');
+
+    $template = new Template();
+    echo $template->render('views/template.html');
+});
+
+#-------------------------------------------------------------------------------
+//Route for recipes.html
+$f3->route('GET|POST /recipes', function ($f3) {
+    $f3->set('title', "All Recipes");
+    $f3->set('contentPath', 'views/recipes.html');
+
+    $template = new Template();
+    echo $template->render('views/template.html');
+});
+
+#-------------------------------------------------------------------------------
 //run fat free
 $f3->run();
