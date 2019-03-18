@@ -1,50 +1,27 @@
 <!--Home page content-->
 <div class="mainContent">
     <h1>{{ @title }}</h1>
-    <p>I need some sort of content to test the main background color so cooperate!</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>tall</p>
-    <p>Much text, so much text. Much text, so much text. Much text, so much text. Much text, so much text.
-        Much text, so much text. Much text, so much text. Much text, so much text. Much text, so much text.
-        Much text, so much text. Much text, so much text. Much text, so much text. Much text, so much text.
-        Much text, so much text. Much text, so much text. Much text, so much text. Much text, so much text.
-        Much text, so much text. Much text, so much text. Much text, so much text. Much text, so much text.
-    </p>
+    <div class="container" id="boardDisplay">
+        <div class="row">
+            <div class="col-5" id="articles">
+                <repeat group="{{@allBoards}}" value="{{@board}}">
+                    <check if="{{get_class(@board) == 'Article'}}">
+                        <a href="articles/{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
+                        <check if="{{@board->getImgPath() != ''}}">
+                            <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                        </check>
+                    </check>
+                </repeat>
+            </div>
+
+            <div class="col-5" id="recipes">
+                <repeat group="{{@allBoards}}" value="{{@board}}">
+                    <check if="{{get_class(@board) == 'Recipe'}}">
+                        <p>ITS A RECIPE</p>
+                    </check>
+                </repeat>
+            </div>
+        </div>
+    </div>
+
 </div>

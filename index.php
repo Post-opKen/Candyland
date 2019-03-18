@@ -42,6 +42,8 @@ $f3->route('GET|POST /', function ($f3) {
     //set path for page content
     $f3->set('contentPath', 'views/home.html');
 
+    $f3->set('allBoards', getAllBoards());
+
     $template = new Template;
     echo $template->render('views/template.html');
 });

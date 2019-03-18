@@ -1,4 +1,13 @@
 <?php
+//php error reporting
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//
+//session_start();
+//
+//require ('../classes/board.php');
+//require ('../classes/article.php');
+//require ('../classes/recipe.php');
 
 //try/catch for db require
 try {
@@ -188,3 +197,49 @@ function getBoards($boardIds)
     }
     return $outBoards;
 }
+
+function getAllBoards()
+{
+    global $dbh;
+
+    //eventual output
+    $outputBoards = array();
+
+    //get all articles with sql
+    $sql = "SELECT * FROM candyland_articles";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    //loop and make article objects (add to output)
+    foreach ($results as $article)
+    {
+        $articleObject = new Article($article['article_id'], $article['title'],
+            $article['author'], $article['text'], $article['image_path']);
+        $outputBoards[sizeof($outputBoards)]=$articleObject;
+    }
+
+    //get all recipes with sql
+    $sql = "SELECT * FROM candyland_recipes";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    //loop and make recipe objects (add to output)
+    foreach ($results as $recipe)
+    {
+        $recipeObject = new Recipe($recipe['recipe_id'], $recipe['title'],
+            $recipe['author'], explode(", ",$recipe['ingredients']), explode(", ",$recipe['instructions']),
+            $recipe['image_path']);
+        $outputBoards[sizeof($outputBoards)]=$recipeObject;
+    }
+
+    //return result
+    return $outputBoards;
+}
+
+//$dbh=connect();
+////test get all boards
+//
+//$_SESSION['allBoards']=getAllBoards();
+//print_r($_SESSION['allBoards']);
