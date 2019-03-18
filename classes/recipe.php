@@ -26,9 +26,9 @@ class Recipe extends Board
      * @param array $instructions A list of the instructions for the recipe.
      * @param string $imgPath The path from index to the recipe's image.
      */
-    public function __construct($title, $author, array $ingredients, array $instructions, $imgPath = "DEFAULT")
+    public function __construct($boardId, $title, $author, array $ingredients, array $instructions, $imgPath = "DEFAULT")
     {
-        parent::__construct($title, $author, $imgPath);
+        parent::__construct($boardId, $title, $author, $imgPath);
         $this->_ingredients = $ingredients;
         $this->_instructions = $instructions;
     }

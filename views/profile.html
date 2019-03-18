@@ -11,7 +11,10 @@
             <div class="col-5">
                 <repeat group="{{@boards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Article'}}">
-                        <p>ITS AN ARTICLE</p>
+                        <a href="articles/{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
+                        <check if="{{@board->getImgPath() != ''}}">
+                            <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                        </check>
                     </check>
                 </repeat>
             </div>

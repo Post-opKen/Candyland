@@ -17,6 +17,7 @@ class Board
     private $_title;
     private $_author;
     private $_imgPath;
+    private $_boardId;
 
     /**
      * Creates a new Board with a file path and a title.
@@ -24,12 +25,22 @@ class Board
      * @param string $author The author of the board.
      * @param string $imgPath The path from index to the board's image.
      */
-    public function __construct($title, $author, $imgPath = "DEFAULT")
+    public function __construct($boardId, $title, $author, $imgPath = "DEFAULT")
     {
+        $this->_boardId = $boardId;
         $this->_title = $title;
         $this->_author = $author;
         $this->_imgPath = $imgPath;
     }
+
+    /**
+     * @return String The id of the Board.
+     */
+    public function getBoardId()
+    {
+        return $this->_boardId;
+    }
+
 
     /**
      * @return String The title of the Board.

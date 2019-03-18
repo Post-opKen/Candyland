@@ -175,9 +175,9 @@ function getBoards($boardIds)
 
         //create object
         if (substr($boardId, 0, 1) == "A") {
-            $output = new Article($results[0]['title'], $results[0]['author'], $results[0]['text']);
+            $output = new Article(substr($boardId, 1), $results[0]['title'], $results[0]['author'], $results[0]['text'], $results[0]['image_path']);
         } else if (substr($boardId, 0, 1) == "R") {
-            $output = new Recipe($results[0]['title'], $results[0]['author'], explode(", ", $results[0]['ingredients']), explode(", ", $results[0]['instructions']));
+            $output = new Recipe(substr($boardId, 1), $results[0]['title'], $results[0]['author'], explode(", ", $results[0]['ingredients']), explode(", ", $results[0]['instructions']), $results[0]['image_path']);
         } else {
             echo "STILL INVALID ID";
             return;

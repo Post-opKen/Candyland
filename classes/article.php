@@ -21,9 +21,9 @@ class Article extends Board
      * @param string $title The title of the article.
      * @param string $body The body of the article.
      */
-    public function __construct($title, $author, $body, $imgPath = "DEFAULT")
+    public function __construct($boardId, $title, $author, $body, $imgPath = "DEFAULT")
     {
-        parent::__construct($title, $author, $imgPath);
+        parent::__construct($boardId, $title, $author, $imgPath);
         $this->_body = $body;
     }
 
