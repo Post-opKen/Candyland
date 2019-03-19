@@ -67,17 +67,76 @@ $f3->route('GET|POST /create', function ($f3) {
     //set path for page content
     $f3->set('contentPath', 'views/create.html');
     
-    //Has the form been submitted?`
-    if (!empty($_POST)) {
+    //Article form Validation
+    if (isset($_POST['articleBtn'])) {
         //Ensure fields not blank
         $isValid = true;
-        if ($_POST['title'] == '') {
+        if ($_POST['articleTitle'] == '') {
             $isValid = false;
-            $f3->set('titleError', 'Your article must have a title!');
+            $f3->set('articleTitleError', 'Your article must have a title!');
         }
         if ($_POST['body'] == '') {
             $isValid = false;
             $f3->set('bodyError', 'Your article must have a body!');
+        }
+        if ($isValid) {
+            //add article to DB
+            addArticle($_POST['articleTitle'], $_SESSION['user']->getUserId(), $_POST['body'], $_POST['articleImg']);
+
+            //clear POST data
+            $_POST = array();
+
+            //set success message
+            $f3->set('createSuccess', 'Article created!');
+        }
+    }
+
+    //Recipe form Validation
+    if (isset($_POST['recipeBtn'])) {
+        //Ensure fields not blank
+        $isValid = true;
+        if ($_POST['recipeTitle'] == '') {
+            $isValid = false;
+            $f3->set('recipeTitleError', 'Your recipe must have a title!');
+        }
+        if (isset($_POST['instructions'])) {
+            //loop through array, only keeping nonempty indices
+            $validInstructions = array();
+            foreach ($_POST['instructions'] as $instruction)
+            {
+                if($instruction != '')
+                {
+                    //save only valid instructions
+                    array_push($validInstructions, $instruction);
+                }
+            }
+            //if the user gave at least one valid instruction
+            if(!empty($validInstructions))
+            {
+                $_POST['instructions'] = $validInstructions;
+            }else{
+                $isValid = false;
+                $f3->set('instructionError', 'Your recipe must have at least one instruction!');
+            }
+        }
+        if (isset($_POST['ingredients'])) {//loop through array, only keeping nonempty indices
+            $validIngredients = array();
+            foreach ($_POST['ingredients'] as $ingredient)
+            {
+                if($ingredient != '')
+                {
+                    //save only valid instructions
+                    array_push($validIngredients, $ingredient);
+                }
+            }
+            //if the user gave at least one valid instruction
+            if(!empty($validInstructions))
+            {
+                $_POST['ingredients'] = $validIngredients;
+            }else{
+                $isValid = false;
+                $f3->set('ingredientError', 'Your recipe must have at least one ingredient!');
+            }
         }
         if ($isValid) {
             //add article to DB
@@ -87,7 +146,7 @@ $f3->route('GET|POST /create', function ($f3) {
             $_POST = array();
 
             //set success message
-            $f3->set('createSuccess', 'Article created!');
+            $f3->set('createSuccess', 'Recipe created!');
         }
     }
     $template = new Template;

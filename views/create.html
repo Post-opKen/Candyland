@@ -1,35 +1,127 @@
 <!--Home page content-->
 <div class="mainContent text-center">
     <h1>{{ @title }}</h1>
+    <div class="row">
+        <!--
+        Check for mobile device.
+        on mobile, forms are vertical, on desktop, forms are horizontal
+        -->
+        <check if="{{@mobileStyles}}">
+            <true>
+                <div class="col-12">
+            </true>
+            <false>
+                <div class="col-6">
+            </false>
+        </check>
+        <h3>New Article</h3>
+        <form method="post" action="">
+            <check if="{{isset(@createSuccess)}}">
+                <p class="text-success">{{@createSuccess}}</p>
+            </check>
+
+            <div class="form-group">
+                <label class="form-control-label" for="articleTitle"> Title:</label>
+                <input class="form-control" type="text" name="title" id="articleTitle"
+                <check if="{{isset(@POST.articleTitle)}}">value="{{@POST.articleTitle}}"</check>
+                >
+            </div>
+            <check if="{{isset(@articleTitleError)}}">
+                <p class="text-danger">{{@articleTitleError}}</p>
+            </check>
+
+            <div class="form-group">
+                <!--Do not add whitespace to textarea-->
+                <label class="form-control-label" for="body"> Article Body:</label>
+                <textarea class="form-control" name="body" id="body"><check if="{{isset(@POST.body)}}">{{@POST.body}}</check></textarea>
+            </div>
+            <check if="{{isset(@bodyError)}}">
+                <p class="text-danger">{{@bodyError}}</p>
+            </check>
+
+            <div class="form-group">
+                <label class="form-control-label" for="articleImg"> Image URL:</label>
+                <input class="form-control" type="text" name="articleImg" id="articleImg"
+                <check if="{{isset(@POST.articleImg)}}">value="{{@POST.articleImg}}"</check>>
+            </div>
+            <button class="btn btn-primary" name="articleBtn">Create Article</button>
+        </form>
+    </div>
+
+    <!--
+    Check for mobile device.
+    on mobile, forms are vertical, on desktop, forms are horizontal
+    -->
+    <check if="{{@mobileStyles}}">
+        <true>
+            <div class="col-12">
+        </true>
+        <false>
+            <div class="col-6">
+        </false>
+    </check>
+    <h3>New Recipe</h3>
     <form method="post" action="">
         <check if="{{isset(@createSuccess)}}">
             <p class="text-success">{{@createSuccess}}</p>
         </check>
 
         <div class="form-group">
-            <label class="form-control-label" for="title"> Title:</label>
-            <input class="form-control" type="text" name="title" id="title"
-            <check if="{{isset(@POST.title)}}">value="{{@POST.title}}"</check>
+            <label class="form-control-label" for="recipeTitle"> Title:</label>
+            <input class="form-control" type="text" name="recipeTitle" id="recipeTitle"
+            <check if="{{isset(@POST.recipeTitle)}}">value="{{@POST.recipeTitle}}"</check>
             >
-
         </div>
-        <check if="{{isset(@titleError)}}">
-            <p class="text-danger">{{@titleError}}</p>
+        <check if="{{isset(@recipeTitleError)}}">
+            <p class="text-danger">{{@recipeTitleError}}</p>
         </check>
 
         <div class="form-group">
-            <!--Do not add whitespace to textarea-->
-            <label class="form-control-label" for="body"> Article Body:</label>
-            <textarea class="form-control" name="body" id="body"><check if="{{isset(@POST.body)}}">{{@POST.body}}</check></textarea>
+            <label class="form-control-label">Ingredients:</label>
+            <div class="multi-field-wrapper">
+                <div class="multi-fields">
+                    <div class="multi-field">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="ingredients[]">
+                            <div class="input-group-append">
+                                <button type="button" class="remove-field btn btn-primary float-right">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="add-field btn btn-primary">Add another ingredient</button>
+            </div>
         </div>
-        <check if="{{isset(@bodyError)}}">
-            <p class="text-danger">{{@bodyError}}</p>
+        <check if="{{isset(@ingredientError)}}">
+            <p class="text-danger">{{@ingredientError}}</p>
         </check>
 
         <div class="form-group">
-            <label class="form-control-label" for="img"> Image URL:</label>
-            <input class="form-control" type="text" name="img" id="img">
+            <label class="form-control-label">Instructions:</label>
+            <div class="multi-field-wrapper">
+                <div class="multi-fields">
+                    <div class="multi-field">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="instructions[]">
+                            <div class="input-group-append">
+                                <button type="button" class="remove-field btn btn-primary float-right">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="add-field btn btn-primary">Add another instruction</button>
+            </div>
         </div>
-        <button class="btn btn-primary" name="btn">Create Article</button>
+        <check if="{{isset(@instructionError)}}">
+            <p class="text-danger">{{@instructionError}}</p>
+        </check>
+
+        <div class="form-group">
+            <label class="form-control-label" for="recipeImg"> Image URL:</label>
+            <input class="form-control" type="text" name="recipeImg" id="recipeImg">
+        </div>
+        <button class="btn btn-primary" name="recipeBtn">Create Recipe</button>
     </form>
+</div>
+</div>
 </div>
