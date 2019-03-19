@@ -140,7 +140,7 @@ $f3->route('GET|POST /create', function ($f3) {
         }
         if ($isValid) {
             //add article to DB
-            addArticle($_POST['title'], $_SESSION['user']->getUserId(), $_POST['body'], $_POST['img']);
+            addRecipe($_POST['recipeTitle'], $_SESSION['user']->getUserId(), $_POST['ingredients'], $_POST['instructions'], $_POST['recipeImg']);
 
             //clear POST data
             $_POST = array();

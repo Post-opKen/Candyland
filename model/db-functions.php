@@ -107,7 +107,7 @@ function loginUser($user, $pass)
     }
 }
 
-//adds a new user to the database
+//adds a new article to the database
 function addArticle($title, $author, $text, $image)
 {
     global $dbh;
@@ -123,6 +123,32 @@ function addArticle($title, $author, $text, $image)
     $statement->bindParam(':title', $title, PDO::PARAM_STR);
     $statement->bindParam(':author', $author, PDO::PARAM_STR);
     $statement->bindParam(':text', $text, PDO::PARAM_STR);
+    $statement->bindParam(':image', $image, PDO::PARAM_STR);
+
+    //4. execute the statement
+    $success = $statement->execute();
+
+    //5. return the result
+    return $success;
+}
+
+//adds a new recipe to the database
+function addRecipe($title, $author, $ingredients, $instructions, $image)
+{
+    global $dbh;
+
+    //1. define the query
+    $sql = "INSERT INTO candyland_recipes(title, author, ingredients, instructions, image_path)
+	            VALUES (:title, :author, :ingredients, :instructions, :image)";
+
+    //2. prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //3. bind parameters
+    $statement->bindParam(':title', $title, PDO::PARAM_STR);
+    $statement->bindParam(':author', $author, PDO::PARAM_STR);
+    $statement->bindParam(':ingredients', implode('| ', $ingredients), PDO::PARAM_STR);
+    $statement->bindParam(':instructions', implode('| ', $instructions), PDO::PARAM_STR);
     $statement->bindParam(':image', $image, PDO::PARAM_STR);
 
     //4. execute the statement
