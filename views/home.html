@@ -6,7 +6,7 @@
             <div class="col-5" id="articles">
                 <repeat group="{{@allBoards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Article'}}">
-                        <a href="articles/A{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
+                        <a href="board/A{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
                         <check if="{{@board->getImgPath() != ''}}">
                             <true>
                                 <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
@@ -22,7 +22,7 @@
             <div class="col-5" id="recipes">
                 <repeat group="{{@allBoards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Recipe'}}">
-                        <a href="recipes/R{{ @board->getBoardId() }}">
+                        <a href="board/R{{ @board->getBoardId() }}">
                             <h4>{{ @board->getTitle() }}</h4>
                         </a>
                         <check if="{{@board->getImgPath() != ''}}">

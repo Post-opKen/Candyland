@@ -3,6 +3,10 @@
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 
+//require ('../classes/board.php');
+//require ('../classes/article.php');
+//require ('../classes/recipe.php');
+
 //try/catch for db require
 try {
     if ($_SERVER['USER'] == 'edausgre') {
@@ -341,6 +345,43 @@ function saveRecipe($user_id, $saved, $recipeId)
     return $statement->execute();
 }
 
+function getBoard($boardId)
+{
+    global $dbh;
+    $id = substr($boardId,1);
+    //is board id for article or recipe?
+    if(substr($boardId,0,1)=="A") {
+        $sql = "SELECT * FROM candyland_articles WHERE article_id=$id";
+    }
+    elseif(substr($boardId,0,1)=="R") {
+        $sql = "SELECT * FROM candyland_recipes WHERE recipe_id=$id";
+    }
+    else {
+        //invalid board id
+        return false;
+    }
+    //statement
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+
+    //results
+    $results = $statement->fetch(PDO::FETCH_ASSOC);
+
+    //return board object
+    if(substr($boardId,0,1)=="A") {
+        return new Article($results['article_id'], $results['title'], $results['author'],
+            $results['text'], $results['image_path']);
+    }
+    elseif(substr($boardId,0,1)=="R") {
+        return new Recipe($results['recipe_id'], $results['title'], $results['author'],
+            explode("| ",$results['ingredients']),  explode("| ",$results['instructions']), $results['image_path']);
+    }
+    else {
+        //still invalid, how did you get here?
+        return false;
+    }
+}
+
 /*---------------------------UNUSED FUNCTION MIGHT REMOVE-------------------------------*/
 //gets a users data by user id
 function getUser($userId)
@@ -362,7 +403,8 @@ function getUser($userId)
 }
 
 //$dbh=connect();
-////test get all boards
-//
-//$_SESSION['allBoards']=getAllBoards();
-//print_r($_SESSION['allBoards']);
+//test getBoards
+//print_r(getBoard("A1"));
+//print_r(getBoard("R1"));
+//print_r(getBoard("A2"));
+//print_r(getBoard("R2"));
