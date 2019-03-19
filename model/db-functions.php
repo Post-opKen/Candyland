@@ -2,12 +2,6 @@
 //php error reporting
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
-//
-//session_start();
-//
-//require ('../classes/board.php');
-//require ('../classes/article.php');
-//require ('../classes/recipe.php');
 
 //try/catch for db require
 try {
@@ -20,6 +14,10 @@ try {
     echo $e->getMessage();
 }
 
+/**
+ * Makes a connection to the database.
+ * @return null|PDO Returns a PDO object if connection was successful, false otherwise.
+ */
 function connect()
 {
     try {
@@ -34,7 +32,11 @@ function connect()
     }
 }
 
-//returns true if the name has been taken, false otherwise
+/**
+ * Queries the database for the given username, returning whether it is taken or not.
+ * @param $username String The username to be tested against the database.
+ * @return bool True if the username is already taken, false otherwise.
+ */
 function nameTaken($username)
 {
     global $dbh;
@@ -58,6 +60,12 @@ function nameTaken($username)
 }
 
 //adds a new user to the database
+/**
+ * Adds a new user to the database with the given username and password.
+ * @param $name string The username of the account.
+ * @param $pass string The password of the account.
+ * @return bool True if the account was added successfully, false otherwise.
+ */
 function addUser($name, $pass)
 {
     global $dbh;
@@ -80,12 +88,18 @@ function addUser($name, $pass)
     return $success;
 }
 
+/**
+ * Logs in the user with the given credentials.
+ * @param $user string The username of the account to be logged in.
+ * @param $pass string The password of the account to be logged in.
+ * @return bool|mixed
+ */
 function loginUser($user, $pass)
 {
     global $dbh;
 
     //1. define the query
-    $sql = "SELECT * FROM candyland_users WHERE username = :username";
+    $sql = "SELECT user_id, username, saved FROM candyland_users WHERE username = :username";
 
     //2. prepare the statement
     $statement = $dbh->prepare($sql);
@@ -108,6 +122,14 @@ function loginUser($user, $pass)
 }
 
 //adds a new article to the database
+/**
+ * Adds a new article to the database.
+ * @param $title string The title of the article.
+ * @param $author int The userId of the author of the article.
+ * @param $text string The text of the article.
+ * @param $image string The URL of the article's image.
+ * @return bool True if the article was added successfully, false otherwise.
+ */
 function addArticle($title, $author, $text, $image)
 {
     global $dbh;
@@ -133,6 +155,15 @@ function addArticle($title, $author, $text, $image)
 }
 
 //adds a new recipe to the database
+/**
+ * Adds a new recipe to the database.
+ * @param $title string The title of the recipe.
+ * @param $author int The userId of the author of the recipe.
+ * @param $ingredients array An array of the recipe's ingredients.
+ * @param $instructions array An array of the recipe's instructions.
+ * @param $image string The URL of the recipe's image.
+ * @return bool True if the recipe was added successfully, false otherwise.
+ */
 function addRecipe($title, $author, $ingredients, $instructions, $image)
 {
     global $dbh;
@@ -158,26 +189,13 @@ function addRecipe($title, $author, $ingredients, $instructions, $image)
     return $success;
 }
 
-//gets a users data by user id
-function getUser($userId)
-{
-    global $dbh;
-
-    //create sql statement
-    $sql = "SELECT * FROM candyland_users WHERE user_id=$userId";
-
-    //prepare the statement
-    $statement = $dbh->prepare($sql);
-
-    //Execute statement
-    $statement->execute();
-
-    $result = $statement->fetchAll();
-
-    return $result;
-}
 
 //returns an array of board objects
+/**
+ * Gets an array of board objects based on the board ids given.
+ * @param $boardIds array An array of board ids.
+ * @return array|bool Returns an array of board objects, or false if the operation failed.
+ */
 function getBoards($boardIds)
 {
     global $dbh;
@@ -195,8 +213,7 @@ function getBoards($boardIds)
             $sql = "SELECT * FROM candyland_recipes
                 WHERE recipe_id = $id";
         } else {
-            echo "<p>INVALID BOARD TYPE</p>";
-            return;
+            return false;
         }
 
         //prepare statement
@@ -210,15 +227,13 @@ function getBoards($boardIds)
 
         //create object
         if (substr($boardId, 0, 1) == "A") {
-            $output = new Article(substr($boardId, 1), $results[0]['title'], $results[0]['author'], $results[0]['text'],
-                $results[0]['image_path']);
+            $output = new Article(substr($boardId, 1), $results[0]['title'], $results[0]['author'], $results[0]['text'], $results[0]['image_path']);
         } else if (substr($boardId, 0, 1) == "R") {
             $output = new Recipe(substr($boardId, 1), $results[0]['title'], $results[0]['author'],
                 explode("| ", $results[0]['ingredients']), explode("| ", $results[0]['instructions']),
                 $results[0]['image_path']);
         } else {
-            echo "STILL INVALID ID";
-            return;
+            return false;
         }
 
         //add to output array
@@ -227,6 +242,10 @@ function getBoards($boardIds)
     return $outBoards;
 }
 
+/**
+ * Gets all the boards stored in the database.
+ * @return array An array of board objects.
+ */
 function getAllBoards()
 {
     global $dbh;
@@ -241,11 +260,10 @@ function getAllBoards()
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     //loop and make article objects (add to output)
-    foreach ($results as $article)
-    {
+    foreach ($results as $article) {
         $articleObject = new Article($article['article_id'], $article['title'],
             $article['author'], $article['text'], $article['image_path']);
-        $outputBoards[sizeof($outputBoards)]=$articleObject;
+        $outputBoards[sizeof($outputBoards)] = $articleObject;
     }
 
     //get all recipes with sql
@@ -255,16 +273,35 @@ function getAllBoards()
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     //loop and make recipe objects (add to output)
-    foreach ($results as $recipe)
-    {
+    foreach ($results as $recipe) {
         $recipeObject = new Recipe($recipe['recipe_id'], $recipe['title'],
-            $recipe['author'], explode("| ",$recipe['ingredients']), explode("| ",$recipe['instructions']),
+            $recipe['author'], explode("| ", $recipe['ingredients']), explode("| ", $recipe['instructions']),
             $recipe['image_path']);
-        $outputBoards[sizeof($outputBoards)]=$recipeObject;
+        $outputBoards[sizeof($outputBoards)] = $recipeObject;
     }
 
     //return result
     return $outputBoards;
+}
+
+/*---------------------------UNUSED FUNCTION MIGHT REMOVE-------------------------------*/
+//gets a users data by user id
+function getUser($userId)
+{
+    global $dbh;
+
+    //create sql statement
+    $sql = "SELECT * FROM candyland_users WHERE user_id=$userId";
+
+    //prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //Execute statement
+    $statement->execute();
+
+    $result = $statement->fetchAll();
+
+    return $result;
 }
 
 //$dbh=connect();
