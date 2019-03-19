@@ -5,12 +5,13 @@
 <div class="mainContent text-center">
 
     <h1>{{ @title }}</h1>
-    <div class="container board">
+    <div class="container boards">
         <div class="row">
             <repeat group="{{ @allArticles }}" value="{{ @article }}">
                 <div class="col-lg-5 col-sm-11 board article">
                     <!--title-->
                     <a href="board/A{{ @article->getBoardId() }}"><h3>{{ @article->getTitle() }}</h3></a>
+                    <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
                     <div class="boardContent">
                         <!--image and or text-->
                         <check if="{{ @article->getImgPath()!='' }}">
