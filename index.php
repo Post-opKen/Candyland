@@ -233,6 +233,9 @@ $f3->route('GET|POST /profile', function ($f3) {
         $f3->reroute('/login');
     }
 
+    //update boards
+    $_SESSION['user']->updateBoards();
+
     //Set f3 vars for user info
     $f3->set('userId', $_SESSION['user']->getUserId());
     $f3->set('username', $_SESSION['user']->getUsername());

@@ -5,7 +5,16 @@
  * this class creates a profile object
  */
 
-require_once('model/db-functions.php');
+//try/catch for db-functions require
+try {
+    if ($_SERVER['USER'] == 'edausgre') {
+        require_once('/home/edausgre/public_html/328/Candyland/model/db-functions.php');
+    } else if ($_SERVER['USER'] == 'awilliam') {
+        require_once('/home/awilliam/public_html/Candyland/model/db-functions.php');
+    }
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 
 $dbh = connect();
 
@@ -76,6 +85,35 @@ class Profile
     function getBoardStrings()
     {
         return $this->_boardStrings;
+    }
+
+    /**
+     * Saves an article to the user's saved boards.
+     * @param $articleId int The id of the article to be saved
+     */
+    function addSavedArticle($articleId)
+    {
+        //add the new id
+        array_push($this->_boardStrings, "A$articleId");
+    }
+
+    /**
+     * Saves a recipe to the user's saved boards.
+     * @param $recipeId int The id of the recipe to be saved
+     */
+    function addSavedRecipe($recipeId)
+    {
+        //add the new id
+        array_push($this->_boardStrings, "R$recipeId");
+    }
+
+    /**
+     * Updates the boards field.
+     */
+    function updateBoards()
+    {
+        //update boards field
+        $this->_boards = getBoards($this->_boardStrings);
     }
 
     //other methods
