@@ -184,9 +184,12 @@ function getBoards($boardIds)
 
         //create object
         if (substr($boardId, 0, 1) == "A") {
-            $output = new Article(substr($boardId, 1), $results[0]['title'], $results[0]['author'], $results[0]['text'], $results[0]['image_path']);
+            $output = new Article(substr($boardId, 1), $results[0]['title'], $results[0]['author'], $results[0]['text'],
+                $results[0]['image_path']);
         } else if (substr($boardId, 0, 1) == "R") {
-            $output = new Recipe(substr($boardId, 1), $results[0]['title'], $results[0]['author'], explode(", ", $results[0]['ingredients']), explode(", ", $results[0]['instructions']), $results[0]['image_path']);
+            $output = new Recipe(substr($boardId, 1), $results[0]['title'], $results[0]['author'],
+                explode("| ", $results[0]['ingredients']), explode("| ", $results[0]['instructions']),
+                $results[0]['image_path']);
         } else {
             echo "STILL INVALID ID";
             return;
@@ -229,7 +232,7 @@ function getAllBoards()
     foreach ($results as $recipe)
     {
         $recipeObject = new Recipe($recipe['recipe_id'], $recipe['title'],
-            $recipe['author'], explode(", ",$recipe['ingredients']), explode(", ",$recipe['instructions']),
+            $recipe['author'], explode("| ",$recipe['ingredients']), explode("| ",$recipe['instructions']),
             $recipe['image_path']);
         $outputBoards[sizeof($outputBoards)]=$recipeObject;
     }
