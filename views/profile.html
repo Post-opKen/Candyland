@@ -27,20 +27,21 @@
             <div class="col-5">
                 <repeat group="{{@boards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Recipe'}}">
-                    <a href="recipes/{{ @board->getBoardId() }}">
-                        <h4>{{ @board->getTitle() }}</h4>
-                    </a>
-                    <check if="{{@board->getImgPath() != ''}}">
-                        <true>
-                            <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
-                        </true>
-                        <false>
-                            <ul>
-                                <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredients }}">
-                                    <li>{{ @ingredients }}</li>
-                                </repeat>
-                            </ul>
-                        </false>
+                        <a href="recipes/{{ @board->getBoardId() }}">
+                            <h4>{{ @board->getTitle() }}</h4>
+                        </a>
+                        <check if="{{@board->getImgPath() != ''}}">
+                            <true>
+                                <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                            </true>
+                            <false>
+                                <ul>
+                                    <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredients }}">
+                                        <li>{{ @ingredients }}</li>
+                                    </repeat>
+                                </ul>
+                            </false>
+                        </check>
                     </check>
                 </repeat>
             </div>
