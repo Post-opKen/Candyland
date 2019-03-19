@@ -1,31 +1,34 @@
 <div class="mainContent">
     <!--Title of the board and the autho-->
-    <h1>{{ @board['title'] }}</h1>
-    <p>{{ @board['author'] }}</p>
+    <h1>{{ @board->getTitle() }}</h1>
+    <p>{{ @board->getAuthor() }}</p>
 
-    <!--If there is and image display it-->
-    <check if="{{ @board['image_path'] }}">
-        <img src="{{ @board['image_path'] }}" alt="{{ @board['title'] }}">
-    </check>
+    <div>
+        <!--If there is and image display it-->
+        <check if="{{ @board->getImgPath() }}">
+            <img src="{{ @board->getImgPath() }}" alt="{{ @board->getTitle() }}">
+        </check>
 
-    <check if="{{ get_class(@board)=='Article' }}">
-        <!--If this is an article display the content-->
-        <true>
-            <p>{{ @board['body'] }}</p>
-        </true>
-        <!--else this is a recipe so display the ingredients and the istructions-->
-        <false>
-            <ul>
-                <repeat group="{{ @board['ingredients'] }}" value="{{ @indgredient }}">
-                    <li>{{@ingredient}}</li>
-                </repeat>
-            </ul>
-            <hr>
-            <ol>
-                <repeat group="{{ @board['instructions'] }}" value="{{ @instruction }}">
-                    <li>{{ @instruction }}</li>
-                </repeat>
-            </ol>
-        </false>
-    </check>
+        <check if="{{ get_class(@board)=='Article' }}">
+            <!--If this is an article display the content-->
+            <true>
+                <p>{{ @board->getBody() }}</p>
+            </true>
+            <!--else this is a recipe so display the ingredients and the istructions-->
+            <false>
+                <ul>
+                    <repeat group="{{ @board->getIngredients() }}" value="{{ @indgredient }}">
+                        <li><h4>{{@indgredient}}</h4></li>
+                    </repeat>
+                </ul>
+                <hr>
+                <ol>
+                    <repeat group="{{ @board->getInstructions() }}" value="{{ @instruction }}">
+                        <li>{{ @instruction }}</li>
+                    </repeat>
+                </ol>
+            </false>
+        </check>
+    </div>
+
 </div>

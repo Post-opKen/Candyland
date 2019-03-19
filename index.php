@@ -272,7 +272,7 @@ $f3->route('GET|POST /recipes', function ($f3) {
 $f3->route('GET|POST /board/@boardId', function ($f3, $params) {
     //get board object
     $f3->set('board', getBoard($params['boardId']));
-    print_r($f3->get('board'));
+    //print_r($f3->get('board'));
 
     //set route
     $f3->set('contentPath', 'views/board.html');
