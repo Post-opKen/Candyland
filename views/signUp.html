@@ -5,7 +5,7 @@
 
         <div class="form-group">
             <label for="name">Username:
-                <input class="form-control" type="text" name="name" id="name">
+                <input class="form-control" type="text" name="name" id="name" <check if="{{isset(@POST.name)}}">value="{{@POST.name}}"</check>>
             </label>
         </div>
         <div id="userMessage"></div>

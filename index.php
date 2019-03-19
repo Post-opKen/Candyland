@@ -171,11 +171,14 @@ $f3->route('GET /article', function ($f3) {
 $f3->route('GET|POST /signup', function ($f3) {
     //set page title
     $f3->set('title', 'Sign Up');
+
     //set path for page content
     $f3->set('contentPath', 'views/signUp.html');
+
     //check if form has been submitted
-    if (!empty($_POST)) {
+    if (isset($_POST['name']) OR isset($_POST['pass'])) {
         require 'model/validation_functions.php';
+
         //validate form
         if (validateUsername($_POST['name']) AND validatePassword($_POST['pass'])) {
             //submit to db
@@ -197,7 +200,7 @@ $f3->route('GET|POST /login', function ($f3) {
     $f3->set('contentPath', 'views/signIn.html');
 
     //check if form has been submitted
-    if ($_POST['user'] != '' AND $_POST['pword'] != '') {
+    if ($_POST['user'] != '' OR $_POST['pword'] != '') {
         //attempt to login
         $result = loginUser($_POST['user'], $_POST['pword']);
 
