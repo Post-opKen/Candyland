@@ -86,6 +86,6 @@ class Profile
      */
     function boardsToString()
     {
-        return implode(", ", $this->_boards);
+        return implode(", ", $this->_boardStrings);
     }
 }
