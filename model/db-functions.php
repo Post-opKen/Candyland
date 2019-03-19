@@ -103,7 +103,7 @@ function loginUser($user, $pass)
     global $dbh;
 
     //1. define the query
-    $sql = "SELECT user_id, username, saved FROM candyland_users WHERE username = :username";
+    $sql = "SELECT * FROM candyland_users WHERE username = :username";
 
     //2. prepare the statement
     $statement = $dbh->prepare($sql);
@@ -307,11 +307,11 @@ function saveArticle($user_id, $saved, $articleId)
     $statement = $dbh->prepare($sql);
 
     //append new article to saved boards
-    $saved = $saved . ", A" . $articleId;
+    $newSaved = $saved . ", A" . $articleId;
 
     //3. bind params
     $statement->bindParam(':user_id', $user_id, PDO::PARAM_STR);
-    $statement->bindParam(':saved', $saved, PDO::PARAM_STR);
+    $statement->bindParam(':saved', $newSaved, PDO::PARAM_STR);
 
     //4. execute the statement
     return $statement->execute();
@@ -348,15 +348,13 @@ function saveRecipe($user_id, $saved, $recipeId)
 function getBoard($boardId)
 {
     global $dbh;
-    $id = substr($boardId,1);
+    $id = substr($boardId, 1);
     //is board id for article or recipe?
-    if(substr($boardId,0,1)=="A") {
+    if (substr($boardId, 0, 1) == "A") {
         $sql = "SELECT * FROM candyland_articles WHERE article_id=$id";
-    }
-    elseif(substr($boardId,0,1)=="R") {
+    } elseif (substr($boardId, 0, 1) == "R") {
         $sql = "SELECT * FROM candyland_recipes WHERE recipe_id=$id";
-    }
-    else {
+    } else {
         //invalid board id
         return false;
     }
@@ -368,15 +366,13 @@ function getBoard($boardId)
     $results = $statement->fetch(PDO::FETCH_ASSOC);
 
     //return board object
-    if(substr($boardId,0,1)=="A") {
+    if (substr($boardId, 0, 1) == "A") {
         return new Article($results['article_id'], $results['title'], $results['author'],
             $results['text'], $results['image_path']);
-    }
-    elseif(substr($boardId,0,1)=="R") {
+    } elseif (substr($boardId, 0, 1) == "R") {
         return new Recipe($results['recipe_id'], $results['title'], $results['author'],
-            explode("| ",$results['ingredients']),  explode("| ",$results['instructions']), $results['image_path']);
-    }
-    else {
+            explode("| ", $results['ingredients']), explode("| ", $results['instructions']), $results['image_path']);
+    } else {
         //still invalid, how did you get here?
         return false;
     }
