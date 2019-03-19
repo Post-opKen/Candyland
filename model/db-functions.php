@@ -2,7 +2,7 @@
 //php error reporting
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
-
+//
 //require ('../classes/board.php');
 //require ('../classes/article.php');
 //require ('../classes/recipe.php');
@@ -193,7 +193,6 @@ function addRecipe($title, $author, $ingredients, $instructions, $image)
     return $success;
 }
 
-
 //returns an array of board objects
 /**
  * Gets an array of board objects based on the board ids given.
@@ -378,6 +377,43 @@ function getBoard($boardId)
     }
 }
 
+function getArticles()
+{
+    global $dbh;
+    $output= array();
+
+    $sql = "SELECT * FROM candyland_articles";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($results as $article)
+    {
+        $output[sizeof($output)]=new Article($article['article_id'], $article['title'],
+            $article['author'], $article['text'], $article['image_path']);
+    }
+    return $output;
+}
+
+function getRecipes()
+{
+    global $dbh;
+    $output= array();
+
+    $sql = "SELECT * FROM candyland_recipes";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($results as $recipe)
+    {
+        $output[sizeof($output)]=new Recipe($recipe['recipe_id'], $recipe['title'],
+            $recipe['author'], explode("| ",$recipe['ingredients']),
+            explode("| ",$recipe['instructions']), $recipe['image_path']);
+    }
+    return $output;
+}
+
 /*---------------------------UNUSED FUNCTION MIGHT REMOVE-------------------------------*/
 //gets a users data by user id
 function getUser($userId)
@@ -399,8 +435,7 @@ function getUser($userId)
 }
 
 //$dbh=connect();
-//test getBoards
-//print_r(getBoard("A1"));
-//print_r(getBoard("R1"));
-//print_r(getBoard("A2"));
-//print_r(getBoard("R2"));
+////test getArticles() and getRecipes()
+//print_r(getArticles());
+//echo "GARBAGE";
+//print_r(getRecipes());
