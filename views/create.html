@@ -1,6 +1,11 @@
 <!--Home page content-->
 <div class="mainContent text-center">
     <h1>{{ @title }}</h1>
+
+    <check if="{{isset(@createSuccess)}}">
+        <p class="text-success">{{@createSuccess}}</p>
+    </check>
+
     <div class="row">
         <!--
         Check for mobile device.
@@ -16,13 +21,9 @@
         </check>
         <h3>New Article</h3>
         <form method="post" action="">
-            <check if="{{isset(@createSuccess)}}">
-                <p class="text-success">{{@createSuccess}}</p>
-            </check>
-
             <div class="form-group">
                 <label class="form-control-label" for="articleTitle"> Title:</label>
-                <input class="form-control" type="text" name="title" id="articleTitle"
+                <input class="form-control" type="text" name="articleTitle" id="articleTitle"
                 <check if="{{isset(@POST.articleTitle)}}">value="{{@POST.articleTitle}}"</check>
                 >
             </div>
@@ -33,7 +34,8 @@
             <div class="form-group">
                 <!--Do not add whitespace to textarea-->
                 <label class="form-control-label" for="body"> Article Body:</label>
-                <textarea class="form-control" name="body" id="body"><check if="{{isset(@POST.body)}}">{{@POST.body}}</check></textarea>
+                <textarea class="form-control" name="body" id="body"><check
+                        if="{{isset(@POST.body)}}">{{@POST.body}}</check></textarea>
             </div>
             <check if="{{isset(@bodyError)}}">
                 <p class="text-danger">{{@bodyError}}</p>
@@ -42,7 +44,8 @@
             <div class="form-group">
                 <label class="form-control-label" for="articleImg"> Image URL:</label>
                 <input class="form-control" type="text" name="articleImg" id="articleImg"
-                <check if="{{isset(@POST.articleImg)}}">value="{{@POST.articleImg}}"</check>>
+                <check if="{{isset(@POST.articleImg)}}">value="{{@POST.articleImg}}"</check>
+                >
             </div>
             <button class="btn btn-primary" name="articleBtn">Create Article</button>
         </form>
@@ -62,10 +65,6 @@
     </check>
     <h3>New Recipe</h3>
     <form method="post" action="">
-        <check if="{{isset(@createSuccess)}}">
-            <p class="text-success">{{@createSuccess}}</p>
-        </check>
-
         <div class="form-group">
             <label class="form-control-label" for="recipeTitle"> Title:</label>
             <input class="form-control" type="text" name="recipeTitle" id="recipeTitle"
@@ -118,7 +117,7 @@
 
         <div class="form-group">
             <label class="form-control-label" for="recipeImg"> Image URL:</label>
-            <input class="form-control" type="text" name="recipeImg" id="recipeImg">
+            <input class="form-control" type="text" name="recipeImg" id="recipeImg" <check if="{{isset(@POST.recipeImg)}}">value="{{@POST.recipeImg}}"</check>>
         </div>
         <button class="btn btn-primary" name="recipeBtn">Create Recipe</button>
     </form>
