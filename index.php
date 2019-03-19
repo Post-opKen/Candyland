@@ -9,6 +9,7 @@ Routing for Scoop
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+#*******************************************************************************
 //require autoload
 require_once 'vendor/autoload.php';
 $detect = new Mobile_Detect;
@@ -17,12 +18,14 @@ session_start();
 require_once 'model/db-functions.php';
 $dbh = connect();
 
+#*******************************************************************************
 //create an instance of the base class
 $f3 = Base::instance();
 
 //fat free error reporting
 $f3->set('DEBUG', 3);
 
+#*******************************************************************************
 //DETECT DEVICE FOR MOBILE STYLES
 global $detect;
 if ($detect->isMobile() == 1) {
@@ -32,14 +35,13 @@ if ($detect->isMobile() == 1) {
 } else {
     $f3->set('mobileStyles', false);
 }
+
+#*******************************************************************************
 #-------------------------------------------------------------------------------
-//define a default route
+//Route to default route
 $f3->route('GET|POST /', function ($f3) {
-
-    //set page title
+    //set title and content
     $f3->set('title', 'Scoop');
-
-    //set path for page content
     $f3->set('contentPath', 'views/home.html');
 
     $f3->set('allBoards', getAllBoards());
@@ -53,7 +55,7 @@ $f3->route('GET|POST /home', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
-//Route for article creation page
+//Route to article creation page
 $f3->route('GET|POST /create', function ($f3) {
     //check if user is logged in
     if (!isset($_SESSION['user'])) {
@@ -154,12 +156,10 @@ $f3->route('GET|POST /create', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
-//Route for article display page
+//Route to article display page
 $f3->route('GET /article', function ($f3) {
-    //set page title
+    //set title and content
     $f3->set('title', $_SESSION['article']->getTitle());
-
-    //set path for page content
     $f3->set('contentPath', 'views/articles.html');
 
     $template = new Template;
@@ -167,12 +167,10 @@ $f3->route('GET /article', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
-//Route for sign up page
+//Route to sign up page
 $f3->route('GET|POST /signup', function ($f3) {
-    //set page title
+    //set title and content
     $f3->set('title', 'Sign Up');
-
-    //set path for page content
     $f3->set('contentPath', 'views/signUp.html');
 
     //check if form has been submitted
@@ -191,12 +189,10 @@ $f3->route('GET|POST /signup', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
-//Route for login
+//Route to login
 $f3->route('GET|POST /login', function ($f3) {
-    //set page title
+    //set title and content
     $f3->set('title', 'Log in');
-
-    //set path for page content
     $f3->set('contentPath', 'views/signIn.html');
 
     //check if form has been submitted
@@ -225,8 +221,12 @@ $f3->route('GET|POST /login', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
-//Route for profile.html
+//Route to profile.html
 $f3->route('GET|POST /profile', function ($f3) {
+    //set title and content
+    $f3->set('title', 'Profile');
+    $f3->set('contentPath', 'views/profile.html');
+
     //Redirect
     if (!isset($_SESSION['user'])) {
         //User is not logged in
@@ -239,17 +239,15 @@ $f3->route('GET|POST /profile', function ($f3) {
     $f3->set('boards', $_SESSION['user']->getBoards());
     $f3->set('boardStrings', $_SESSION['user']->getBoardStrings());
 
-    //Set f3 vars for template
-    $f3->set('title', 'Profile');
-    $f3->set('contentPath', 'views/profile.html');
 
     $template = new Template();
     echo $template->render('views/template.html');
 });
 
 #-------------------------------------------------------------------------------
-//Route for articles.html
+//Route to articles.html
 $f3->route('GET|POST /articles', function ($f3) {
+    //set title and content
     $f3->set('title', "All Articles");
     $f3->set('contentPath', 'views/articles.html');
 
@@ -258,8 +256,9 @@ $f3->route('GET|POST /articles', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
-//Route for recipes.html
+//Route to recipes.html
 $f3->route('GET|POST /recipes', function ($f3) {
+    //set title and content
     $f3->set('title', "All Recipes");
     $f3->set('contentPath', 'views/recipes.html');
 
@@ -268,19 +267,20 @@ $f3->route('GET|POST /recipes', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
-//Route for board.html
+//Route to board.html
 $f3->route('GET|POST /board/@boardId', function ($f3, $params) {
+    //set title and content
+    $f3->set('title', 'Board Display');
+    $f3->set('contentPath', 'views/board.html');
+
     //get board object
     $f3->set('board', getBoard($params['boardId']));
-    //print_r($f3->get('board'));
-
-    //set route
-    $f3->set('contentPath', 'views/board.html');
 
     $template = new Template();
     echo $template->render('views/template.html');
 });
 
 #-------------------------------------------------------------------------------
+#*******************************************************************************
 //run fat free
 $f3->run();
