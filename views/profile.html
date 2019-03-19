@@ -13,7 +13,12 @@
                     <check if="{{get_class(@board) == 'Article'}}">
                         <a href="articles/{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
                         <check if="{{@board->getImgPath() != ''}}">
-                            <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                            <true>
+                                <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                            </true>
+                            <false>
+                                <p>{{ substr(@board->getBody(),0, 150) }}</p>
+                            </false>
                         </check>
                     </check>
                 </repeat>
@@ -21,8 +26,20 @@
 
             <div class="col-5">
                 <repeat group="{{@boards}}" value="{{@board}}">
-                    <check if="{{get_class(@board) == 'Recipe'}}">
-                        <p>ITS A RECIPE</p>
+                    <a href="recipes/{{ @board->getBoardId() }}">
+                        <h4>{{ @board->getTitle() }}</h4>
+                    </a>
+                    <check if="{{@board->getImgPath() != ''}}">
+                        <true>
+                            <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                        </true>
+                        <false>
+                            <ul>
+                                <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredients }}">
+                                    <li>{{ @ingredients }}</li>
+                                </repeat>
+                            </ul>
+                        </false>
                     </check>
                 </repeat>
             </div>
