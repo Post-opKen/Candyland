@@ -252,7 +252,7 @@ $f3->route('GET|POST /articles', function ($f3) {
     $f3->set('contentPath', 'views/articles.html');
 
     //get all articles
-    //$f3->set('allArticles', getArticles());
+    $f3->set('allArticles', getArticles());
 
     $template = new Template();
     echo $template->render('views/template.html');
@@ -266,7 +266,7 @@ $f3->route('GET|POST /recipes', function ($f3) {
     $f3->set('contentPath', 'views/recipes.html');
 
     //get all recipes
-    //$f3->set('allRecipes', getRecipes());
+    $f3->set('allRecipes', getRecipes());
 
     $template = new Template();
     echo $template->render('views/template.html');
