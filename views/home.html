@@ -8,7 +8,12 @@
                     <check if="{{get_class(@board) == 'Article'}}">
                         <a href="articles/{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
                         <check if="{{@board->getImgPath() != ''}}">
-                            <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                            <true>
+                                <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                            </true>
+                            <false>
+                                <p>{{ substr(@board->getBody(),0, 150) }}</p>
+                            </false>
                         </check>
                     </check>
                 </repeat>
