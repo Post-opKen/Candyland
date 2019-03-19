@@ -137,8 +137,25 @@ div.mainContent {
     margin-right: auto;
 }
 
-/* Logo Section */
+/* Main Content's contents */
+/*Parents to children
+    div.mainContent             gray
+    div.container boards        gray
+    div.board article/recipe    pink/cyan
+    div.boardContent            ice-cream cone tan
+    img/p/ul                    fonts and spacing
+ */
+div.mainContent div.boards {
+    background-color: rgb(204, 199, 195);
+}
 
-/*____________________________________________________________________________*/
-/* Mobile View */
-/*----------------------------------------------------------------------------*/
+
+div.mainContent div.boards div.board {
+
+}
+div.mainContent div.boards div.article {
+    background-color: rgb(255,0,220);
+}
+div.mainContent div.boards div.recipe {
+    background-color: rgb(0,255,255);
+}
