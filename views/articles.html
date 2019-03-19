@@ -18,7 +18,7 @@
                                 <img src="{{ @article->getImgPath() }}" alt="{{ @article->getTitle() }}">
                             </true>
                             <false><!--article doesn't have an image-->
-                                <p>{{ @article->getBody() }}</p>
+                                <p>{{ substr(@article->getBody(),0,150) }}</p>
                             </false>
                         </check>
                     </div>
