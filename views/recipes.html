@@ -3,5 +3,31 @@
     Displays all recipes in the database.
 -->
 <div class="mainContent">
+
     <h1>{{ @title }}</h1>
+    <div class="container board">
+        <div class="row">
+            <repeat group="{{ @allRecipes }}" value="{{ @recipe }}">
+                <div class="col-lg-5 col-sm-11 board recipe">
+                    <!--title-->
+                    <div class="boardContent">
+                        <!--image and or text-->
+                        <check if="{{ @recipe->getImgPath() }}">
+                            <true><!--if article has an image-->
+                                <img src="{{ @recipe->getImgPath() }}" alt="{{ @recipe->getTitle() }}">
+                            </true>
+                            <false><!--article doesn't have an image-->
+                                <ul>
+                                    <repeat group="{{ @recipe->getIngredients() }}" value="{{ @ingredient }}">
+                                        <li>{{ @ingredient }}</li>
+                                    </repeat>
+                                </ul>
+                            </false>
+                        </check>
+                    </div>
+                </div> <!--end board, recipe-->
+            </repeat>
+        </div><!--end row-->
+    </div><!--end container, board-->
+
 </div>

@@ -3,8 +3,27 @@
     Displays all the articles in the database
 -->
 <div class="mainContent text-center">
-    <h1>{{ @SESSION.article->getTitle() }}</h1>
-    <H3>By {{ @SESSION.article->getAuthor() }}</H3>
-    <p>{{ @SESSION.article->getBody() }}</p>
-    <img src="{{ @SESSION.article->getImgPath() }}">
+
+    <h1>{{ @title }}</h1>
+    <div class="container board">
+        <div class="row">
+            <repeat group="{{ @allArticles }}" value="{{ @article }}">
+                <div class="col-lg-5 col-sm-11 board article">
+                    <!--title-->
+                    <div class="boardContent">
+                        <!--image and or text-->
+                        <check if="{{ @article->getImgPath() }}">
+                            <true><!--if article has an image-->
+                                <img src="{{ @article->getImgPath() }}" alt="{{ @article->getTitle() }}">
+                            </true>
+                            <false><!--article doesn't have an image-->
+                                <p>{{ @article->getBody() }}</p>
+                            </false>
+                        </check>
+                    </div>
+                </div> <!--end board, article-->
+            </repeat>
+        </div><!--end row-->
+    </div><!--end container, board-->
+
 </div>
