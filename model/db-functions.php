@@ -16,7 +16,7 @@ try {
 
 /**
  * Makes a connection to the database.
- * @return null|PDO Returns a PDO object if connection was successful, false otherwise.
+ * @return null|PDO Returns a PDO object if connection was successful, null otherwise.
  */
 function connect()
 {
@@ -282,6 +282,63 @@ function getAllBoards()
 
     //return result
     return $outputBoards;
+}
+
+//Save board
+/**
+ * Adds a new article to the user's list of saved articles.
+ * @param $user_id int The id of the user.
+ * @param $saved string A comma delimited string of the user's saved boards.
+ * @param $articleId int The id of the article to be saved.
+ * @return bool True if the operation was successful, false otherwise.
+ */
+function saveArticle($user_id, $saved, $articleId)
+{
+    global $dbh;
+
+    //1. define the query
+    $sql = "UPDATE candyland_users SET saved = :saved WHERE user_id = :user_id";
+
+    //2. prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //append new article to saved boards
+    $saved = $saved . ", A" . $articleId;
+
+    //3. bind params
+    $statement->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+    $statement->bindParam(':saved', $saved, PDO::PARAM_STR);
+
+    //4. execute the statement
+    return $statement->execute();
+}
+
+/**
+ * Adds a new recipe to the user's list of saved recipes.
+ * @param $user_id int The id of the user.
+ * @param $saved string A comma delimited string of the user's saved boards.
+ * @param $recipeId int The id of the recipe to be saved.
+ * @return bool True if the operation was successful, false otherwise.
+ */
+function saveRecipe($user_id, $saved, $recipeId)
+{
+    global $dbh;
+
+    //1. define the query
+    $sql = "UPDATE candyland_users SET saved = :saved WHERE user_id = :user_id";
+
+    //2. prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //append new article to saved boards
+    $saved = $saved . ", R" . $recipeId;
+
+    //3. bind params
+    $statement->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+    $statement->bindParam(':saved', $saved, PDO::PARAM_STR);
+
+    //4. execute the statement
+    return $statement->execute();
 }
 
 /*---------------------------UNUSED FUNCTION MIGHT REMOVE-------------------------------*/
