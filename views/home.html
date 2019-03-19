@@ -7,6 +7,7 @@
                 <repeat group="{{@allBoards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Article'}}">
                         <a href="board/A{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
+                        <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
                         <check if="{{@board->getImgPath() != ''}}">
                             <true>
                                 <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
@@ -25,6 +26,7 @@
                         <a href="board/R{{ @board->getBoardId() }}">
                             <h4>{{ @board->getTitle() }}</h4>
                         </a>
+                        <button class="btn btn-primary saveRecipe" data-recipe-id="{{@board->getBoardId()}}">Save</button>
                         <check if="{{@board->getImgPath() != ''}}">
                             <true>
                                 <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
@@ -42,5 +44,4 @@
             </div>
         </div>
     </div>
-
 </div>
