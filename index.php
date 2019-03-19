@@ -268,5 +268,20 @@ $f3->route('GET|POST /recipes', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
+//Route for board.html
+$f3->route('GET|POST /board/@boardId', function ($f3, $params) {
+    //get board object
+
+    //set title to board title
+
+    //set route
+    $f3->set('contentPath', 'views/board.html');
+
+    $template = new Template();
+    echo $template->render('views/template.html');
+
+});
+
+#-------------------------------------------------------------------------------
 //run fat free
 $f3->run();
