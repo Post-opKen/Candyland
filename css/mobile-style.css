@@ -62,14 +62,16 @@ div.mainContent {
 
 .mainContent h1,
 .mainContent h2,
-.mainContent h3,
+.mainContent h3{
+    font-size: 2em;
+}
 .mainContent h4,
 .mainContent h5,
 .mainContent h6 {
-    font-size: 2em;
+    font-size: 1em;
 }
 
-/* Footer */
+    /* Footer */
 footer * {
     font-size: 3em;
 }
