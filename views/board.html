@@ -6,6 +6,23 @@
     <!--Title of the board and the author-->
     <h1>{{ @board->getTitle() }}</h1>
     <h5>By: {{ @author }}</h5>
+
+    <!--Only displays save button if the user is logged in-->
+    <check if="{{isset(@SESSION.user)}}">
+        <!--Save recipe-->
+        <check if="{{get_class(@board)=='Recipe' AND !in_array('R'.@board->getBoardId(), @SESSION.user->getBoardStrings())}}">
+            <button class="btn btn-primary saveRecipe" data-recipe-id="{{@board->getBoardId()}}">
+                Save
+            </button>
+        </check>
+        <!--Save article-->
+        <check if="{{get_class(@board)=='Article' AND !in_array('A'.@board->getBoardId(), @SESSION.user->getBoardStrings())}}">
+            <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">
+                Save
+            </button>
+        </check>
+    </check>
+
     <div class="container rounded boards">
         <div class="row">
             <div class="col-11 boardColumns">
@@ -25,8 +42,8 @@
                             <false>
 
                                 <ul>
-                                    <repeat group="{{ @board->getIngredients() }}" value="{{ @indgredient }}">
-                                        <li><h4>{{@indgredient}}</h4></li>
+                                    <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredient }}">
+                                        <li><h4>{{@ingredient}}</h4></li>
                                     </repeat>
                                 </ul>
                                 <hr>
@@ -43,7 +60,6 @@
         </div><!--row-->
 
     </div><!--.container, boards-->
-
 
 
 </div><!--.mainContent-->
