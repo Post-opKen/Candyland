@@ -1,8 +1,11 @@
-<!--Home page content-->
-<div class="mainContent">
+<!--
+    home.html
+    the home page of the website
+-->
+<div class="mainContent text-center">
     <h1>{{ @title }}</h1>
     <div class="container rounded boards" id="boardDisplay">
-        <div class="row">
+        <div class="text-left row">
             <div class="col-lg-5 col-md-5 col-sm-11 boardColumns articles">
                 <repeat group="{{@allBoards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Article'}}">

@@ -12,7 +12,7 @@
     <!--Display all saved articles/recipes-->
     <div class="container rounded boards" id="boardDisplay">
         <!--Articles-->
-        <div class="row">
+        <div class="text-left row">
             <div class="col-lg-5 col-md-5 col-sm-11 boardColumns articles">
                 <repeat group="{{@boards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Article'}}">

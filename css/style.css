@@ -164,13 +164,13 @@ div.mainContent div.boards h6 {
 div.mainContent div.boards {
     background-color: rgb(204, 199, 195);
     border: 1px solid black;
+    margin-top: 5px;
 }
 
 div.mainContent div.boards div.boardColumns {
     margin: 20px;
     display: block;
 }
-
 
 div.mainContent div.boards div.articles div.article {
     background-color: rgb(255,0,220);
@@ -191,4 +191,7 @@ div.mainContent div.boards div.boardColumns div.board {
 div.mainContent div.boards div.boardColumns div.board div.boardContent {
     background-color: rgb(255, 246, 226);
     border: 3px inset rgb(255, 220, 140);
+    margin-top: 5px;
 }
+
+/* styles for image on boards.html only */

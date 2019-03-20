@@ -2,14 +2,14 @@
     recipes.html
     Displays all recipes in the database.
 -->
-<div class="mainContent">
-
+<div class="mainContent text-center">
     <h1>{{ @title }}</h1>
     <div class="container rounded boards">
-        <div class="row">
-            <div class="col-lg-5 col-sm-11 boardColumns recipes">
+        <div class="text-left row">
+
+            <div class="col-12 boardColumns recipes">
                 <repeat group="{{ @allRecipes }}" value="{{ @recipe }}">
-                    <div class="rounded board recipe">
+                    <div class="col-lg-5 col-md-5 col-sm-11 float-left rounded board recipe">
                         <!--title-->
                         <a href="R{{ @recipe->getBoardId() }}">
                             <h4>{{ @recipe->getTitle() }}</h4>
