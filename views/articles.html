@@ -5,11 +5,11 @@
 -->
 <div class="mainContent text-center">
     <h1>{{ @title }}</h1>
-    <div class="container rounded boards">
+    <div class="col-12 container rounded boards">
         <div class="text-left row">
             <div class="col-12 boardColumns articles">
                 <repeat group="{{ @allArticles }}" value="{{ @article }}">
-                    <div class="col-lg-5 col-md-5 col-sm-11 float-left rounded board article">
+                    <div class="col-lg-5 col-sm-12 float-left rounded board article">
                         <!--title-->
                         <a href="A{{ @article->getBoardId() }}">
                             <h4>{{ @article->getTitle() }}</h4>

@@ -4,9 +4,9 @@
 -->
 <div class="mainContent text-center">
     <h1>{{ @title }}</h1>
-    <div class="container rounded boards" id="boardDisplay">
+    <div class="container rounded boards col-12" id="boardDisplay">
         <div class="text-left row">
-            <div class="col-lg-5 col-md-5 col-sm-11 boardColumns articles">
+            <div class="col-lg-5 col-sm-12 boardColumns articles">
                 <repeat group="{{@allBoards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Article'}}">
                         <div class="rounded board article" id="articles">
@@ -34,7 +34,7 @@
                 </repeat>
             </div><!--.boardColumns, articles-->
 
-            <div class="col-lg-5 col-md-5 col-sm-11 boardColumns recipes">
+            <div class="col-lg-5 col-sm-12 boardColumns recipes">
                 <repeat group="{{@allBoards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Recipe'}}">
                         <div class="rounded board recipe" id="recipes">
