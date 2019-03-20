@@ -22,7 +22,7 @@
                             <div class="boardContent">
                                 <check if="{{@board->getImgPath() != ''}}">
                                     <true>
-                                        <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                        <img class="img-fluid" src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
                                     </true>
                                     <false>
                                         <p>{{ substr(@board->getBody(),0, 150) }}</p>
