@@ -2,10 +2,12 @@
 //php error reporting
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
-//
-//require ('../classes/board.php');
+
+//require ('../classes/profile.php');
 //require ('../classes/article.php');
 //require ('../classes/recipe.php');
+//require ('../classes/profile.php');
+
 
 //try/catch for db require
 try {
@@ -429,13 +431,13 @@ function getUser($userId)
     //Execute statement
     $statement->execute();
 
-    $result = $statement->fetchAll();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $result;
+    $user = new Profile($result['user_id'], $result['username'], $result['saved']);
+
+    return $user;
 }
 
 //$dbh=connect();
-////test getArticles() and getRecipes()
-//print_r(getArticles());
-//echo "GARBAGE";
-//print_r(getRecipes());
+//test getArticles() and getRecipes()
+//print_r(getUser(1)->getUsername());

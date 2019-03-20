@@ -6,35 +6,44 @@
     <!--Title of the board and the author-->
     <h1>{{ @board->getTitle() }}</h1>
     <h5>By: {{ @author }}</h5>
+    <div class="container rounded boards">
+        <div class="row">
+            <div class="col-11 boardColumns">
+                <div class="board">
+                    <!--If there is and image display it-->
+                    <check if="{{ @board->getImgPath() }}">
+                        <img src="{{ @board->getImgPath() }}" alt="{{ @board->getTitle() }}">
+                    </check>
 
-    <div class="container boards">
-        <!--If there is and image display it-->
-        <check if="{{ @board->getImgPath() }}">
-            <img src="{{ @board->getImgPath() }}" alt="{{ @board->getTitle() }}">
-        </check>
+                    <div class="boardContent">
+                        <check if="{{ get_class(@board)=='Article' }}">
+                            <!--If this is an article display the content-->
+                            <true>
+                                <p>{{ @board->getBody() }}</p>
+                            </true>
+                            <!--else this is a recipe so display the ingredients and the instructions-->
+                            <false>
 
-        <div class="boardContent">
-            <check if="{{ get_class(@board)=='Article' }}">
-                <!--If this is an article display the content-->
-                <true>
-                    <p>{{ @board->getBody() }}</p>
-                </true>
-                <!--else this is a recipe so display the ingredients and the instructions-->
-                <false>
+                                <ul>
+                                    <repeat group="{{ @board->getIngredients() }}" value="{{ @indgredient }}">
+                                        <li><h4>{{@indgredient}}</h4></li>
+                                    </repeat>
+                                </ul>
+                                <hr>
+                                <ol>
+                                    <repeat group="{{ @board->getInstructions() }}" value="{{ @instruction }}">
+                                        <li>{{ @instruction }}</li>
+                                    </repeat>
+                                </ol>
+                            </false>
+                        </check>
+                    </div><!--.boardContent-->
+                </div><!--.board-->
+            </div><!--.boardColumns-->
+        </div><!--row-->
 
-                    <ul>
-                        <repeat group="{{ @board->getIngredients() }}" value="{{ @indgredient }}">
-                            <li><h4>{{@indgredient}}</h4></li>
-                        </repeat>
-                    </ul>
-                    <hr>
-                    <ol>
-                        <repeat group="{{ @board->getInstructions() }}" value="{{ @instruction }}">
-                            <li>{{ @instruction }}</li>
-                        </repeat>
-                    </ol>
-                </false>
-            </check>
-        </div><!--.boardContent-->
     </div><!--.container, boards-->
+
+
+
 </div><!--.mainContent-->
