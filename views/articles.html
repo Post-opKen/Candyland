@@ -24,7 +24,7 @@
                             <!--image and or text-->
                             <check if="{{ @article->getImgPath()!='' }}">
                                 <true><!--if article has an image-->
-                                    <img src="{{ @article->getImgPath() }}" alt="{{ @article->getTitle() }}">
+                                    <img class="img-fluid" src="{{ @article->getImgPath() }}" alt="{{ @article->getTitle() }}">
                                 </true>
                                 <false><!--article doesn't have an image-->
                                     <p>{{ substr(@article->getBody(),0,150) }}</p>

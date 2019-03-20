@@ -24,7 +24,7 @@
                             <!--image and or text-->
                             <check if="{{ @recipe->getImgPath() }}">
                                 <true><!--if article has an image-->
-                                    <img src="{{ @recipe->getImgPath() }}" alt="{{ @recipe->getTitle() }}">
+                                    <img class="img-fluid" src="{{ @recipe->getImgPath() }}" alt="{{ @recipe->getTitle() }}">
                                 </true>
                                 <false><!--article doesn't have an image-->
                                     <ul>
