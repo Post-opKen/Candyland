@@ -20,10 +20,14 @@
                             <a href="A{{@board->getBoardId()}}">
                                 <h4>{{@board->getTitle()}}</h4>
                             </a>
+                            <button class="btn btn-primary unsaveArticle" data-article-id="{{@board->getBoardId()}}">
+                                Unsave
+                            </button>
                             <div class="boardContent">
                                 <check if="{{@board->getImgPath() != ''}}">
                                     <true>
-                                        <img class="img-fluid" src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                        <img class="img-fluid" src="{{@board->getImgPath()}}"
+                                             alt="image for {{@board->getTitle()}}">
                                     </true>
                                     <false>
                                         <p>{{ substr(@board->getBody(),0, 150) }}</p>
@@ -43,10 +47,14 @@
                             <a href="R{{ @board->getBoardId() }}">
                                 <h4>{{ @board->getTitle() }}</h4>
                             </a>
+                            <button class="btn btn-primary unsaveRecipe" data-recipe-id="{{@board->getBoardId()}}">
+                                Unsave
+                            </button>
                             <div class="boardContent">
                                 <check if="{{@board->getImgPath() != ''}}">
                                     <true>
-                                        <img class="img-fluid" src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                        <img class="img-fluid" src="{{@board->getImgPath()}}"
+                                             alt="image for {{@board->getTitle()}}">
                                     </true>
                                     <false>
                                         <ul>

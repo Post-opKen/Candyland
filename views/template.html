@@ -69,6 +69,8 @@
 <div class="text-center">
     <footer><h3>Sugar never lies!<br>Created by Ean Daus and Amanda Williams</h3></footer>
 </div>
+
+<!--Conditional script imports-->
 <check if="{{@contentPath == 'views/signUp.html'}}">
     <script src="scripts/signUpVal.js"></script>
 </check>
@@ -78,6 +80,9 @@
 <check if="{{@contentPath == 'views/home.html' or @contentPath == 'views/articles.html'
 or @contentPath == 'views/recipes.html' or @contentPath == 'views/board.html'}}">
     <script src="scripts/saveBoard.js"></script>
+</check>
+<check if="{{@contentPath == 'views/profile.html'}}">
+    <script src="scripts/unsaveBoard.js"></script>
 </check>
 </body>
 </html>

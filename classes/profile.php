@@ -133,6 +133,19 @@ class Profile
         $this->_boards = getBoards($this->_boardStrings);
     }
 
+    /**
+     * Removes a board from the arrays.
+     * @param $boardId string The id of the board to be removed.
+     */
+    function removeBoard($boardId)
+    {
+        //remove board from array
+        array_splice($this->_boardStrings, array_search($boardId, $this->_boardStrings), 1);
+
+        //update boards field
+        $this->updateBoards();
+    }
+
     //other methods
 
     /**

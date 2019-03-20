@@ -219,8 +219,6 @@ $f3->route('GET|POST /login', function ($f3) {
     $template = new Template;
     echo $template->render('views/template.html');
 });
-
-#-------------------------------------------------------------------------------
 //Route to logout
 $f3->route('GET|POST /logout', function ($f3) {
     //log the user out

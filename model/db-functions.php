@@ -346,6 +346,69 @@ function saveRecipe($user_id, $saved, $recipeId)
     return $statement->execute();
 }
 
+//Save board
+/**
+ * Removes an article from the user's list of saved articles.
+ * @param $user_id int The id of the user.
+ * @param $saved string A comma delimited string of the user's saved boards.
+ * @param $articleId int The id of the article to be removed.
+ * @return bool True if the operation was successful, false otherwise.
+ */
+function unsaveArticle($user_id, $saved, $articleId)
+{
+    global $dbh;
+
+    //1. define the query
+    $sql = "UPDATE candyland_users SET saved = :saved WHERE user_id = :user_id";
+
+    //2. prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //remove the article from the array
+    $savedArray = explode(', ', $saved);
+    $needle = array_search("A$articleId", $savedArray);
+    array_splice($savedArray, $needle, 1);
+    $newSaved = implode(', ', $savedArray);
+
+    //3. bind params
+    $statement->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+    $statement->bindParam(':saved', $newSaved, PDO::PARAM_STR);
+
+    //4. execute the statement
+    return $statement->execute();
+}
+
+/**
+ * Removes a recipe from the user's list of saved recipes.
+ * @param $user_id int The id of the user.
+ * @param $saved string A comma delimited string of the user's saved boards.
+ * @param $recipeId int The id of the recipe to be removed.
+ * @return bool True if the operation was successful, false otherwise.
+ */
+function unsaveRecipe($user_id, $saved, $recipeId)
+{
+    global $dbh;
+
+    //1. define the query
+    $sql = "UPDATE candyland_users SET saved = :saved WHERE user_id = :user_id";
+
+    //2. prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //remove the article from the array
+    $savedArray = explode(', ', $saved);
+    $needle = array_search("R$recipeId", $savedArray);
+    array_splice($savedArray, $needle, 1);
+    $newSaved = implode(', ', $savedArray);
+
+    //3. bind params
+    $statement->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+    $statement->bindParam(':saved', $newSaved, PDO::PARAM_STR);
+
+    //4. execute the statement
+    return $statement->execute();
+}
+
 function getBoard($boardId)
 {
     global $dbh;
@@ -416,7 +479,6 @@ function getRecipes()
     return $output;
 }
 
-/*---------------------------UNUSED FUNCTION MIGHT REMOVE-------------------------------*/
 //gets a users data by user id
 function getUser($userId)
 {
