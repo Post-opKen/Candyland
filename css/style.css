@@ -36,7 +36,12 @@ div.mainContent * {
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
 }
-h1,h2,h3,h4,h5,h6 {
+div.mainContent h1,
+div.mainContent h2,
+div.mainContent h3,
+div.mainContent h4,
+div.mainContent h5,
+div.mainContent h6 {
     font-family: 'Pacifico', cursive;
 }
 
@@ -139,23 +144,51 @@ div.mainContent {
 
 /* Main Content's contents */
 /*Parents to children
-    div.mainContent             gray
+    div.mainContent
     div.container boards        gray
+    div.boardColumns articles/recipes        float and separate content
     div.board article/recipe    pink/cyan
     div.boardContent            ice-cream cone tan
     img/p/ul                    fonts and spacing
  */
+
+div.mainContent div.boards h1,
+div.mainContent div.boards h2,
+div.mainContent div.boards h3,
+div.mainContent div.boards h4,
+div.mainContent div.boards h5,
+div.mainContent div.boards h6 {
+    font-weight: lighter;
+}
+
 div.mainContent div.boards {
     background-color: rgb(204, 199, 195);
+    border: 1px solid black;
+}
+
+div.mainContent div.boards div.boardColumns {
+    margin: 20px;
+    display: block;
 }
 
 
-div.mainContent div.boards div.board {
-
-}
-div.mainContent div.boards div.article {
+div.mainContent div.boards div.articles div.article {
     background-color: rgb(255,0,220);
+    border: 1px solid red;
 }
-div.mainContent div.boards div.recipe {
+div.mainContent div.boards div.recipes div.recipe {
     background-color: rgb(0,255,255);
+    border: 1px solid green;
+}
+
+div.mainContent div.boards div.boardColumns div.board {
+    padding: 10px;
+    margin: 10px;
+    border: 3px outset white;
+
+}
+
+div.mainContent div.boards div.boardColumns div.board div.boardContent {
+    background-color: rgb(255, 246, 226);
+    border: 3px inset rgb(255, 220, 140);
 }

@@ -10,46 +10,58 @@
     <a class="btn btn-primary" href="create">Create new board</a>
 
     <!--Display all saved articles/recipes-->
-    <div class="container" id="boardDisplay">
+    <div class="container rounded boards" id="boardDisplay">
         <!--Articles-->
         <div class="row">
-            <div class="col-5">
+            <div class="col-lg-5 col-md-5 col-sm-11 boardColumns articles">
                 <repeat group="{{@boards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Article'}}">
-                        <a href="board/A{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
-                        <check if="{{@board->getImgPath() != ''}}">
-                            <true>
-                                <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
-                            </true>
-                            <false>
-                                <p>{{ substr(@board->getBody(),0, 150) }}</p>
-                            </false>
-                        </check>
+                        <div class="rounded board article">
+                            <a href="A{{@board->getBoardId()}}">
+                                <h4>{{@board->getTitle()}}</h4>
+                            </a>
+                            <div class="boardContent">
+                                <check if="{{@board->getImgPath() != ''}}">
+                                    <true>
+                                        <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                    </true>
+                                    <false>
+                                        <p>{{ substr(@board->getBody(),0, 150) }}</p>
+                                    </false>
+                                </check>
+                            </div><!--.boardContent-->
+                        </div><!--.board, article-->
                     </check>
                 </repeat>
-            </div>
+            </div><!--.boardColumns, articles-->
 
-            <div class="col-5">
+
+            <div class="ol-lg-5 col-sm-11 board recipe">
                 <repeat group="{{@boards}}" value="{{@board}}">
                     <check if="{{get_class(@board) == 'Recipe'}}">
-                        <a href="board/R{{ @board->getBoardId() }}">
-                            <h4>{{ @board->getTitle() }}</h4>
-                        </a>
-                        <check if="{{@board->getImgPath() != ''}}">
-                            <true>
-                                <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
-                            </true>
-                            <false>
-                                <ul>
-                                    <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredients }}">
-                                        <li>{{ @ingredients }}</li>
-                                    </repeat>
-                                </ul>
-                            </false>
-                        </check>
+                        <div class="rounded board recipe">
+                            <a href="R{{ @board->getBoardId() }}">
+                                <h4>{{ @board->getTitle() }}</h4>
+                            </a>
+                            <div class="boardContent">
+                                <check if="{{@board->getImgPath() != ''}}">
+                                    <true>
+                                        <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                    </true>
+                                    <false>
+                                        <ul>
+                                            <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredients }}">
+                                                <li>{{ @ingredients }}</li>
+                                            </repeat>
+                                        </ul>
+                                    </false>
+                                </check>
+                            </div><!--.boardContent-->
+                        </div><!--.board, recipe-->
                     </check>
                 </repeat>
-            </div>
-        </div>
-    </div>
-</div>
+            </div><!--.boardColumns, recipes-->
+
+        </div><!--end row-->
+    </div><!--.container, boards-->
+</div><!--.mainContent-->

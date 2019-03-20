@@ -5,27 +5,31 @@
 <div class="mainContent text-center">
 
     <h1>{{ @title }}</h1>
-    <div class="container boards">
+    <div class="container rounded boards">
         <div class="row">
-            <repeat group="{{ @allArticles }}" value="{{ @article }}">
-                <div class="col-lg-5 col-sm-11 board article">
-                    <!--title-->
-                    <a href="board/A{{ @article->getBoardId() }}"><h3>{{ @article->getTitle() }}</h3></a>
-                    <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
-                    <div class="boardContent">
-                        <!--image and or text-->
-                        <check if="{{ @article->getImgPath()!='' }}">
-                            <true><!--if article has an image-->
-                                <img src="{{ @article->getImgPath() }}" alt="{{ @article->getTitle() }}">
-                            </true>
-                            <false><!--article doesn't have an image-->
-                                <p>{{ substr(@article->getBody(),0,150) }}</p>
-                            </false>
-                        </check>
-                    </div>
-                </div> <!--end board, article-->
-            </repeat>
+            <div class="col-lg-5 col-md-5 col-sm-11 boardColumns articles">
+                <repeat group="{{ @allArticles }}" value="{{ @article }}">
+                    <div class="rounded board article">
+                        <!--title-->
+                        <a href="A{{ @article->getBoardId() }}">
+                            <h4>{{ @article->getTitle() }}</h4>
+                        </a>
+                        <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
+                        <div class="boardContent">
+                            <!--image and or text-->
+                            <check if="{{ @article->getImgPath()!='' }}">
+                                <true><!--if article has an image-->
+                                    <img src="{{ @article->getImgPath() }}" alt="{{ @article->getTitle() }}">
+                                </true>
+                                <false><!--article doesn't have an image-->
+                                    <p>{{ substr(@article->getBody(),0,150) }}</p>
+                                </false>
+                            </check>
+                        </div>
+                    </div> <!--end board, article-->
+                </repeat>
+            </div><!--.boardColumn, articles-->
         </div><!--end row-->
     </div><!--end container, board-->
 
-</div>
+</div><!--.mainContent-->

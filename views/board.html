@@ -3,36 +3,38 @@
     Displays a board which has been selected
 -->
 <div class="mainContent">
-    <!--Title of the board and the autho-->
+    <!--Title of the board and the author-->
     <h1>{{ @board->getTitle() }}</h1>
-    <p>{{ @board->getAuthor() }}</p>
+    <h5>By: {{ @author }}</h5>
 
-    <div>
+    <div class="container boards">
         <!--If there is and image display it-->
         <check if="{{ @board->getImgPath() }}">
             <img src="{{ @board->getImgPath() }}" alt="{{ @board->getTitle() }}">
         </check>
 
-        <check if="{{ get_class(@board)=='Article' }}">
-            <!--If this is an article display the content-->
-            <true>
-                <p>{{ @board->getBody() }}</p>
-            </true>
-            <!--else this is a recipe so display the ingredients and the istructions-->
-            <false>
-                <ul>
-                    <repeat group="{{ @board->getIngredients() }}" value="{{ @indgredient }}">
-                        <li><h4>{{@indgredient}}</h4></li>
-                    </repeat>
-                </ul>
-                <hr>
-                <ol>
-                    <repeat group="{{ @board->getInstructions() }}" value="{{ @instruction }}">
-                        <li>{{ @instruction }}</li>
-                    </repeat>
-                </ol>
-            </false>
-        </check>
-    </div>
+        <div class="boardContent">
+            <check if="{{ get_class(@board)=='Article' }}">
+                <!--If this is an article display the content-->
+                <true>
+                    <p>{{ @board->getBody() }}</p>
+                </true>
+                <!--else this is a recipe so display the ingredients and the instructions-->
+                <false>
 
-</div>
+                    <ul>
+                        <repeat group="{{ @board->getIngredients() }}" value="{{ @indgredient }}">
+                            <li><h4>{{@indgredient}}</h4></li>
+                        </repeat>
+                    </ul>
+                    <hr>
+                    <ol>
+                        <repeat group="{{ @board->getInstructions() }}" value="{{ @instruction }}">
+                            <li>{{ @instruction }}</li>
+                        </repeat>
+                    </ol>
+                </false>
+            </check>
+        </div><!--.boardContent-->
+    </div><!--.container, boards-->
+</div><!--.mainContent-->

@@ -1,47 +1,58 @@
 <!--Home page content-->
 <div class="mainContent">
     <h1>{{ @title }}</h1>
-    <div class="container boards" id="boardDisplay">
+    <div class="container rounded boards" id="boardDisplay">
         <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-11 boardColumns articles">
                 <repeat group="{{@allBoards}}" value="{{@board}}">
-                    <div class="col-5 col-sm-11 board article" id="articles">
                     <check if="{{get_class(@board) == 'Article'}}">
-                        <a href="board/A{{@board->getBoardId()}}"><h4>{{@board->getTitle()}}</h4></a>
-                        <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
-                        <check if="{{@board->getImgPath() != ''}}">
-                            <true>
-                                <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
-                            </true>
-                            <false>
-                                <p>{{ substr(@board->getBody(),0, 150) }}</p>
-                            </false>
-                        </check>
-                    </check>
-                </div>
-            </repeat>
-
-            <div class="col-5" id="recipes">
-                <repeat group="{{@allBoards}}" value="{{@board}}">
-                    <check if="{{get_class(@board) == 'Recipe'}}">
-                        <a href="board/R{{ @board->getBoardId() }}">
-                            <h4>{{ @board->getTitle() }}</h4>
-                        </a>
-                        <button class="btn btn-primary saveRecipe" data-recipe-id="{{@board->getBoardId()}}">Save</button>
-                        <check if="{{@board->getImgPath() != ''}}">
-                            <true>
-                                <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
-                            </true>
-                            <false>
-                                <ul>
-                                    <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredients }}">
-                                        <li>{{ @ingredients }}</li>
-                                    </repeat>
-                                </ul>
-                            </false>
-                        </check>
+                        <div class="rounded board article" id="articles">
+                            <a href="A{{@board->getBoardId()}}">
+                                <h4>{{@board->getTitle()}}</h4>
+                            </a>
+                            <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
+                            <div class="boardContent">
+                                <check if="{{@board->getImgPath() != ''}}">
+                                    <true>
+                                        <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                    </true>
+                                    <false>
+                                        <p>{{ substr(@board->getBody(),0, 150) }}</p>
+                                    </false>
+                                </check>
+                            </div><!--.boardContent-->
+                        </div><!--.board, article-->
                     </check>
                 </repeat>
-            </div>
-        </div>
-    </div>
-</div>
+            </div><!--.boardColumns, articles-->
+
+            <div class="col-lg-5 col-md-5 col-sm-11 boardColumns recipes">
+                <repeat group="{{@allBoards}}" value="{{@board}}">
+                    <check if="{{get_class(@board) == 'Recipe'}}">
+                        <div class="rounded board recipe" id="recipes">
+                            <a href="R{{ @board->getBoardId() }}">
+                                <h4>{{ @board->getTitle() }}</h4>
+                            </a>
+                            <button class="btn btn-primary saveRecipe" data-recipe-id="{{@board->getBoardId()}}">Save</button>
+                            <div class="boardContent">
+                                <check if="{{@board->getImgPath() != ''}}">
+                                    <true>
+                                        <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                    </true>
+                                    <false>
+                                        <ul>
+                                            <repeat group="{{ @board->getIngredients() }}" value="{{ @ingredients }}">
+                                                <li>{{ @ingredients }}</li>
+                                            </repeat>
+                                        </ul>
+                                    </false>
+                                </check>
+                            </div><!--.boardContent-->
+                        </div><!--.board, recipe-->
+                    </check>
+                </repeat>
+            </div><!--.boardColumns, recipes-->
+
+        </div><!--row-->
+    </div><!--.container, boards-->
+</div><!--.mainContent-->

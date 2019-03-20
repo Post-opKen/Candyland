@@ -277,13 +277,20 @@ $f3->route('GET|POST /recipes', function ($f3) {
 
 #-------------------------------------------------------------------------------
 //Route to board.html
-$f3->route('GET|POST /board/@boardId', function ($f3, $params) {
+$f3->route('GET|POST /@boardId', function ($f3, $params) {
     //set title and content
     $f3->set('title', 'Board Display');
     $f3->set('contentPath', 'views/board.html');
 
     //get board object
     $f3->set('board', getBoard($params['boardId']));
+
+    //get author's username
+    $user=getUser($f3->get('board')->getAuthor());
+    $username = $user->getUsername();
+
+    $f3->set('author', $username);
+
 
     $template = new Template();
     echo $template->render('views/template.html');
