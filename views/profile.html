@@ -6,7 +6,6 @@
 <div class="mainContent text-center">
     <h1>{{ @username }}</h1>
 
-    <!--TODO make into a candy button-->
     <a class="btn btn-primary" href="create">Create new board</a>
 
     <!--Display all saved articles/recipes-->
@@ -23,7 +22,7 @@
                             <div class="boardContent">
                                 <check if="{{@board->getImgPath() != ''}}">
                                     <true>
-                                        <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                        <img class="img-fluid" src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
                                     </true>
                                     <false>
                                         <p>{{ substr(@board->getBody(),0, 150) }}</p>
@@ -46,7 +45,7 @@
                             <div class="boardContent">
                                 <check if="{{@board->getImgPath() != ''}}">
                                     <true>
-                                        <img src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
+                                        <img class="img-fluid" src="{{@board->getImgPath()}}" alt="image for {{@board->getTitle()}}">
                                     </true>
                                     <false>
                                         <ul>

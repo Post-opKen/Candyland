@@ -10,7 +10,12 @@
                             <a href="A{{@board->getBoardId()}}">
                                 <h4>{{@board->getTitle()}}</h4>
                             </a>
-                            <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
+                            <!--Only displays save button if the user is logged in, and the board isn't already saved-->
+                            <check if="{{isset(@SESSION.user) AND !in_array('A'.@board->getBoardId(), @SESSION.user->getBoardStrings())}}">
+                                <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">
+                                    Save
+                                </button>
+                            </check>
                             <div class="boardContent">
                                 <check if="{{@board->getImgPath() != ''}}">
                                     <true>
@@ -33,7 +38,12 @@
                             <a href="R{{ @board->getBoardId() }}">
                                 <h4>{{ @board->getTitle() }}</h4>
                             </a>
-                            <button class="btn btn-primary saveRecipe" data-recipe-id="{{@board->getBoardId()}}">Save</button>
+                            <!--Only displays save button if the user is logged in, and the board isn't already saved-->
+                            <check if="{{isset(@SESSION.user) AND !in_array('R'.@board->getBoardId(), @SESSION.user->getBoardStrings())}}">
+                                <button class="btn btn-primary saveRecipe" data-recipe-id="{{@board->getBoardId()}}">
+                                    Save
+                                </button>
+                            </check>
                             <div class="boardContent">
                                 <check if="{{@board->getImgPath() != ''}}">
                                     <true>
@@ -52,7 +62,6 @@
                     </check>
                 </repeat>
             </div><!--.boardColumns, recipes-->
-
         </div><!--row-->
     </div><!--.container, boards-->
 </div><!--.mainContent-->

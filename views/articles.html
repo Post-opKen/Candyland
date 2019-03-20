@@ -14,7 +14,12 @@
                         <a href="A{{ @article->getBoardId() }}">
                             <h4>{{ @article->getTitle() }}</h4>
                         </a>
-                        <button class="btn btn-primary saveArticle" data-article-id="{{@board->getBoardId()}}">Save</button>
+                        <!--Only displays save button if the user is logged in, and the article isn't already saved-->
+                        <check if="{{isset(@SESSION.user) AND !in_array('A'.@article->getBoardId(), @SESSION.user->getBoardStrings())}}">
+                            <button class="btn btn-primary saveArticle" data-article-id="{{@article->getBoardId()}}">
+                                Save
+                            </button>
+                        </check>
                         <div class="boardContent">
                             <!--image and or text-->
                             <check if="{{ @article->getImgPath()!='' }}">

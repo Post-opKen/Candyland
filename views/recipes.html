@@ -14,7 +14,12 @@
                         <a href="R{{ @recipe->getBoardId() }}">
                             <h4>{{ @recipe->getTitle() }}</h4>
                         </a>
-                        <!--<button class="btn btn-primary saveRecipe" data-recipe-id="{{@board->getBoardId()}}">Save</button>-->
+                        <!--Only displays save button if the user is logged in, and the recipe isn't already saved-->
+                        <check if="{{isset(@SESSION.user) AND !in_array('R'.@recipe->getBoardId(), @SESSION.user->getBoardStrings())}}">
+                            <button class="btn btn-primary saveRecipe" data-recipe-id="{{@recipe->getBoardId()}}">
+                                Save
+                            </button>
+                        </check>
                         <div class="boardContent">
                             <!--image and or text-->
                             <check if="{{ @recipe->getImgPath() }}">
