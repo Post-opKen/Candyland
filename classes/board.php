@@ -21,9 +21,10 @@ class Board
 
     /**
      * Creates a new Board with a file path and a title.
-     * @param $title String The title of the board.
+     * @param int $boardId The id of the board.
+     * @param string $title The title of the board.
      * @param string $author The author of the board.
-     * @param string $imgPath The path from index to the board's image.
+     * @param string $imgPath The url of the board's image.
      */
     public function __construct($boardId, $title, $author, $imgPath = "DEFAULT")
     {

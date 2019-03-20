@@ -1,13 +1,10 @@
 <?php
-//php error reporting
-//ini_set('display_errors', 1);
-//error_reporting(E_ALL);
-
-//require ('../classes/profile.php');
-//require ('../classes/article.php');
-//require ('../classes/recipe.php');
-//require ('../classes/profile.php');
-
+/*
+ * Ean and Amanda
+ * 3/20/19
+ * db-functions.php
+ * Methods for querying the database.
+ */
 
 //try/catch for db require
 try {
@@ -409,6 +406,11 @@ function unsaveRecipe($user_id, $saved, $recipeId)
     return $statement->execute();
 }
 
+/**
+ * Retrieves a board with the given id from the database.
+ * @param string $boardId The id of the board to be retrieved.
+ * @return Article|bool|Recipe Returns an Article or Recipe object with the given id, or false if the operation failed.
+ */
 function getBoard($boardId)
 {
     global $dbh;
@@ -442,44 +444,55 @@ function getBoard($boardId)
     }
 }
 
+/**
+ * Returns an array of all articles in the database as Article objects.
+ * @return array An array of Article objects.
+ */
 function getArticles()
 {
     global $dbh;
-    $output= array();
+    $output = array();
 
     $sql = "SELECT * FROM candyland_articles";
     $statement = $dbh->prepare($sql);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($results as $article)
-    {
-        $output[sizeof($output)]=new Article($article['article_id'], $article['title'],
+    foreach ($results as $article) {
+        $output[sizeof($output)] = new Article($article['article_id'], $article['title'],
             $article['author'], $article['text'], $article['image_path']);
     }
     return $output;
 }
 
+/**
+ * Returns an array of all recipes in the database as Recipe objects.
+ * @return array An array of Recipe objects.
+ */
 function getRecipes()
 {
     global $dbh;
-    $output= array();
+    $output = array();
 
     $sql = "SELECT * FROM candyland_recipes";
     $statement = $dbh->prepare($sql);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($results as $recipe)
-    {
-        $output[sizeof($output)]=new Recipe($recipe['recipe_id'], $recipe['title'],
-            $recipe['author'], explode("| ",$recipe['ingredients']),
-            explode("| ",$recipe['instructions']), $recipe['image_path']);
+    foreach ($results as $recipe) {
+        $output[sizeof($output)] = new Recipe($recipe['recipe_id'], $recipe['title'],
+            $recipe['author'], explode("| ", $recipe['ingredients']),
+            explode("| ", $recipe['instructions']), $recipe['image_path']);
     }
     return $output;
 }
 
 //gets a users data by user id
+/**
+ * Retrives a Profile object for the user with the given id.
+ * @param int $userId The id of the user to be retrieved.
+ * @return Profile A Profile object containing the user's data.
+ */
 function getUser($userId)
 {
     global $dbh;
@@ -499,7 +512,3 @@ function getUser($userId)
 
     return $user;
 }
-
-//$dbh=connect();
-//test getArticles() and getRecipes()
-//print_r(getUser(1)->getUsername());

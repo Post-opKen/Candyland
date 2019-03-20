@@ -5,9 +5,6 @@
  * validateUsername.php
  * Checks the username in signUp.html against the DB
  */
-//php error reporting
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 
 require_once '../model/db-functions.php';
 

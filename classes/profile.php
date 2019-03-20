@@ -20,7 +20,7 @@ $dbh = connect();
 
 /**
  * Class Profile
- * A class that represents a profile with an id, username and list of saved boards.
+ * A class that represents a profile with an id, username and lists of saved boards.
  * @author Amanda Williams
  * @author Ean Daus
  * @version 1.0

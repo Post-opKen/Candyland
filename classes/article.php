@@ -18,8 +18,11 @@ class Article extends Board
 
     /**
      * Creates a new Article object.
+     * @param int $boardId The id of the article.
      * @param string $title The title of the article.
+     * @param string $author The author of the article.
      * @param string $body The body of the article.
+     * @param string $imgPath The url of the article's image.
      */
     public function __construct($boardId, $title, $author, $body, $imgPath = "DEFAULT")
     {

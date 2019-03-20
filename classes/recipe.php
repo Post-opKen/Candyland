@@ -8,7 +8,7 @@
 
 /**
  * Class Recipe
- * A class that represents a recipe with a list of ingredients and a time.
+ * A class that represents a recipe with a list of ingredients and a list of instructions.
  * @author Ean Daus
  * @version 1.0
  */
@@ -20,6 +20,7 @@ class Recipe extends Board
 
     /**
      * Creates a new Recipe object.
+     * @param int $boardId The id of the recipe.
      * @param string $title The title of the recipe.
      * @param string $author The author of the recipe.
      * @param array $ingredients A list of the ingredients for the recipe.

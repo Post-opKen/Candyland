@@ -5,9 +5,6 @@
  * unsaveBoard.php
  * Removes a board from the user's saved boards
  */
-////php error reporting
-//ini_set('display_errors', 1);
-//error_reporting(E_ALL);
 
 require_once 'db-functions.php';
 require_once '../classes/profile.php';
