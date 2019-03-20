@@ -221,6 +221,16 @@ $f3->route('GET|POST /login', function ($f3) {
 });
 
 #-------------------------------------------------------------------------------
+//Route to logout
+$f3->route('GET|POST /logout', function ($f3) {
+    //log the user out
+    $_SESSION = array();
+
+    //reroute to login
+    $f3->reroute('login');
+});
+
+#-------------------------------------------------------------------------------
 //Route to profile.html
 $f3->route('GET|POST /profile', function ($f3) {
     //set title and content
