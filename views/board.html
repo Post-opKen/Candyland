@@ -25,11 +25,11 @@
 
     <div class="container rounded boards">
         <div class="row">
-            <div class="col-11 boardColumns">
-                <div class="board">
+            <div class="col-11 boardColumns {{ strtolower(get_class(@board)) }}s">
+                <div class="board {{ strtolower(get_class(@board)) }}">
                     <!--If there is and image display it-->
                     <check if="{{ @board->getImgPath() }}">
-                        <img src="{{ @board->getImgPath() }}" alt="{{ @board->getTitle() }}">
+                        <img class="img-fluid " id="boardExclusive" src="{{ @board->getImgPath() }}" alt="{{ @board->getTitle() }}">
                     </check>
 
                     <div class="boardContent">

@@ -36,10 +36,26 @@ header nav div div {
 /* Main Content */
 div.mainContent {
     margin: 0;
+    padding-left: 0;
+    padding-right: 0;
     width: 100%;
 }
+div.mainContent div.boards {
+    margin-left: 0;
+    margin-right: 0;
+}
 
-/* Font sizes */
+div.mainContent div.boards div.row {
+    margin: 0;
+}
+
+div.mainContent div.boards div.row div.boardColumns {
+    margin: 0;
+    width: max-content;
+}
+
+
+    /* Font sizes */
 div.mainContent {
     font-size: 3em;
 }

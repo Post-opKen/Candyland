@@ -72,6 +72,8 @@ footer {
     background-color: rgb(112, 56, 91);
     color: white;
     font-family: 'Pacifico', cursive;
+    padding: 10px;
+
 }
 
 /*----------------------------------------------------------------------------*/
@@ -145,11 +147,11 @@ div.mainContent {
 /* Main Content's contents */
 /*Parents to children
     div.mainContent
-    div.container boards        gray
-    div.boardColumns articles/recipes        float and separate content
-    div.board article/recipe    pink/cyan
-    div.boardContent            ice-cream cone tan
-    img/p/ul                    fonts and spacing
+    div.container boards                gray
+    div.boardColumns articles/recipes   float and separate content
+    div.board article/recipe            pink/cyan
+    div.boardContent                    ice-cream cone tan
+    img/p/ul                            fonts and spacing
  */
 
 div.mainContent div.boards h1,
@@ -195,3 +197,9 @@ div.mainContent div.boards div.boardColumns div.board div.boardContent {
 }
 
 /* styles for image on boards.html only */
+#boardExclusive {
+    max-height: 55vh;
+    border: 10px ridge gold;
+    display: block;
+    margin:auto;
+}
