@@ -93,8 +93,17 @@ class Profile
      */
     function addSavedArticle($articleId)
     {
-        //add the new id
-        array_push($this->_boardStrings, "A$articleId");
+
+        //if there are no saved boards
+        if ($this->_boardStrings[0] == '') {
+
+            //overwrite the empty element
+            $this->_boardStrings[0] = "A$articleId";
+        } else {
+
+            //add the new id to the end of the array
+            array_push($this->_boardStrings, "A$articleId");
+        }
     }
 
     /**
@@ -103,8 +112,16 @@ class Profile
      */
     function addSavedRecipe($recipeId)
     {
-        //add the new id
-        array_push($this->_boardStrings, "R$recipeId");
+        //if there are no saved boards
+        if ($this->_boardStrings[0] == '') {
+
+            //overwrite the empty element
+            $this->_boardStrings[0] = "R$recipeId";
+        } else {
+
+            //add the new id to the end of the array
+            array_push($this->_boardStrings, "R$recipeId");
+        }
     }
 
     /**
