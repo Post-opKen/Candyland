@@ -36,7 +36,7 @@
                         <check if="{{ get_class(@board)=='Article' }}">
                             <!--If this is an article display the content-->
                             <true>
-                                <p>{{ @board->getBody() }}</p>
+                                <pre>{{ @board->getBody() }}</pre>
                             </true>
                             <!--else this is a recipe so display the ingredients and the instructions-->
                             <false>

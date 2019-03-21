@@ -202,3 +202,7 @@ div.mainContent div.boards div.boardColumns div.board div.boardContent {
     display: block;
     margin:auto;
 }
+/*board display pre tag*/
+pre{
+    white-space: pre-wrap;
+}
